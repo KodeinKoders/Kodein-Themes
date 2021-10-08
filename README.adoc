@@ -1,0 +1,10 @@
+= Kodein Koders themes
+
+For websites, presentations, and other branded products.
+
+- *link:base[]*: Multiplatform list of styles & colors
+- *link:base/base-resources[]*: Resources files for _base_.
+- *link:resources/illustrations[]*: Illustration files
+- *link:compose/compose-web[]*: Compose-Web translation of base styles & colors, as well as some standard constructs.
+- *link:compose/compose-pres[]*: Theme & constructs for https://github.com/KodeinKoders/ComposeUrPres[ComposeUrPres] presentations.
+- *link:compose/compose-pres/compose-pres-resources[]*: Resource files for _compose/compose-pres_.
