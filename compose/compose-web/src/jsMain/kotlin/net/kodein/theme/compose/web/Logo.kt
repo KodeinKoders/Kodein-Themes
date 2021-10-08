@@ -11,46 +11,74 @@ import org.jetbrains.compose.web.dom.Text
 
 @Composable
 public fun Logo(
-    styleSheet: StyleSheet,
-    height: CSSNumeric
+    section: String,
+    color: KodeinColor.Color = KodeinColor.orange,
+    content: @Composable () -> Unit
+) {
+    Logo(
+        section = section,
+        monogramColor = KodeinColor.nameOf(color),
+        textColor = color.css,
+        content = content
+    )
+}
+
+@Composable
+public fun Logo(
+    section: String,
+    monogramColor: String,
+    textColor: CSSColorValue,
+    content: @Composable () -> Unit
 ) {
     Div({
-        classes(styleSheet.css {
+        style {
             display(DisplayStyle.Flex)
             flexDirection(FlexDirection.Row)
             justifyContent(JustifyContent.Center)
             alignItems(AlignItems.Center)
-
-            fontSize(height)
             height(1.em)
-        })
+        }
     }) {
-        Img("img/logo/monogram-orange.svg", "Logo") {
-            classes(styleSheet.css {
+        Img("img/logo/monogram-$monogramColor.svg", "Logo") {
+            style {
                 height(1.em)
                 marginRight(0.25.em)
-            })
+            }
         }
 
         Span({
-            classes(styleSheet.css {
-                fontSize(0.5.em)
-                color(KodeinColor.orange.css)
-            })
+            style {
+                display(DisplayStyle.Flex)
+                flexDirection(FlexDirection.Column)
+                justifyContent(JustifyContent.Center)
+                alignItems(AlignItems.Start)
+                height(1.em)
+                color(textColor)
+            }
         }) {
             Span({
-                classes(styleSheet.css {
+                style {
+                    fontSize(0.5.em)
                     fontWeight(700)
-                })
+                }
             }) {
                 Text("KODEIN")
+                Span({
+                    style {
+                        fontWeight(300)
+                    }
+                }) {
+                    Text(section)
+                }
             }
             Span({
-                classes(styleSheet.css {
-                    fontWeight(300)
-                })
+                style {
+                    fontSize(0.2.em)
+                    marginTop((-0.75).em)
+                    marginLeft(0.075.em)
+                }
             }) {
-                Text("Koders")
+                content()
             }
         }
     }
