@@ -7,12 +7,14 @@ import net.kodein.pres.presentationAppInBody
 import net.kodein.pres.progress
 import net.kodein.theme.installPicon
 import net.kodein.pres.util.InHeadRulesHolder
+import net.kodein.pres.util.d
 import net.kodein.theme.KodeinColor
 import net.kodein.theme.KodeinFont
 import net.kodein.theme.compose.web.KodeinStyle
 import net.kodein.theme.compose.web.apply
 import net.kodein.theme.compose.web.css
 import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.css.selectors.child
 import org.w3c.dom.HTMLLinkElement
 
 
@@ -32,22 +34,22 @@ public object PStyle: StyleSheet(InHeadRulesHolder()) {
         color(KodeinColor.cute.css)
 
         textAlign("center")
-        "ul" {
+        d("ul") {
             textAlign("start")
         }
-        "pre" {
+        d("pre") {
             textAlign("left")
         }
-        "a" {
+        d("a") {
             color(KodeinColor.dark.css)
             textDecoration("none")
         }
 
-        "h1" { apply(KodeinFont.Style.displayLarge) }
-        "h2" { apply(KodeinFont.Style.displayMedium) }
-        "h3" { apply(KodeinFont.Style.displaySmall) }
-        "h4" { apply(KodeinFont.Style.sectionTitle) }
-        "p" { apply(KodeinFont.Style.bodyMedium) }
+        d("h1") { apply(KodeinFont.Style.displayLarge) }
+        d("h2") { apply(KodeinFont.Style.displayMedium) }
+        d("h3") { apply(KodeinFont.Style.displaySmall) }
+        d("h4") { apply(KodeinFont.Style.sectionTitle) }
+        d("p") { apply(KodeinFont.Style.bodyMedium) }
     }
 }
 public fun kodeinPres(
