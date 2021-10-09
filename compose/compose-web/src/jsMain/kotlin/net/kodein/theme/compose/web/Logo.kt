@@ -11,27 +11,27 @@ import org.jetbrains.compose.web.dom.Text
 
 @Composable
 public fun Logo(
-    section: String,
     color: KodeinColor.Color = KodeinColor.orange,
-    content: @Composable () -> Unit
+    catchPhrase: @Composable () -> Unit = {},
+    section: @Composable () -> Unit
 ) {
     Logo(
-        section = section,
         monogramColor = KodeinColor.nameOf(color),
         textColor = color.css,
-        content = content
+        section = section,
+        catchPhrase = catchPhrase
     )
 }
 
 @Composable
 public fun Logo(
-    section: String,
     monogramColor: String,
     textColor: CSSColorValue,
-    content: @Composable () -> Unit
+    catchPhrase: @Composable () -> Unit = {},
+    section: @Composable () -> Unit
 ) {
     Div({
-        style {
+        css {
             display(DisplayStyle.Flex)
             flexDirection(FlexDirection.Row)
             justifyContent(JustifyContent.Center)
@@ -40,14 +40,14 @@ public fun Logo(
         }
     }) {
         Img("img/logo/monogram-$monogramColor.svg", "Logo") {
-            style {
+            css {
                 height(1.em)
                 marginRight(0.25.em)
             }
         }
 
         Span({
-            style {
+            css {
                 display(DisplayStyle.Flex)
                 flexDirection(FlexDirection.Column)
                 justifyContent(JustifyContent.Center)
@@ -57,28 +57,28 @@ public fun Logo(
             }
         }) {
             Span({
-                style {
+                css {
                     fontSize(0.5.em)
                     fontWeight(700)
                 }
             }) {
                 Text("KODEIN")
                 Span({
-                    style {
+                    css {
                         fontWeight(300)
                     }
                 }) {
-                    Text(section)
+                    section()
                 }
             }
             Span({
-                style {
+                css {
                     fontSize(0.2.em)
                     marginTop((-0.75).em)
                     marginLeft(0.075.em)
                 }
             }) {
-                content()
+                catchPhrase()
             }
         }
     }

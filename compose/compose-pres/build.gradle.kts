@@ -30,5 +30,13 @@ kotlin {
                 api("net.kodein.pres:source-code:1.0")
             }
         }
+
+        all {
+            languageSettings {
+                optIn("kotlin.RequiresOptIn")
+                optIn("org.jetbrains.compose.web.ExperimentalComposeWebApi")
+                optIn("kotlin.time.ExperimentalTime")
+            }
+        }
     }
 }
