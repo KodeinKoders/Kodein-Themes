@@ -11,10 +11,22 @@ import net.kodein.theme.KodeinColor
 import net.kodein.theme.KodeinFont
 import net.kodein.theme.compose.web.apply
 import net.kodein.theme.compose.web.css
+import net.kodein.theme.compose.web.em
 import net.kodein.theme.installPicon
 import org.jetbrains.compose.web.ExperimentalComposeWebApi
 import org.jetbrains.compose.web.css.*
 import org.w3c.dom.HTMLLinkElement
+
+
+private fun CSSBuilder.header(size: CSSSizeValue<CSSUnit.em>) {
+    fontFamily(KodeinFont.extended.name)
+    fontSize(size)
+    margin(0.4.em)
+    fontWeight(KodeinFont.Style.FontWeight.Medium.css)
+    textAlign("center")
+    letterSpacing(KodeinFont.Dimension.letterSpacing.em)
+//    lineHeight(KodeinFont.Dimension.lineHeight.em)
+}
 
 
 public fun kodeinPres(
@@ -36,6 +48,10 @@ public fun kodeinPres(
                         // Set global Slide font
                         fontSize(1.5.em)
                         fontFamily(KodeinFont.main.name, "sans-serif")
+                        fontWeight(KodeinFont.Style.FontWeight.Regular.css)
+                        textAlign("start")
+                        letterSpacing(KodeinFont.Dimension.letterSpacing.em)
+//                        lineHeight(KodeinFont.Dimension.lineHeight.em)
 
                         // Slide theme
                         backgroundColor(KodeinColor.dark.css)
@@ -57,11 +73,10 @@ public fun kodeinPres(
                             textDecoration("none")
                         }
 
-                        d("h1") { apply(KodeinFont.Style.displayLarge) }
-                        d("h2") { apply(KodeinFont.Style.displayMedium) }
-                        d("h3") { apply(KodeinFont.Style.displaySmall) }
-                        d("h4") { apply(KodeinFont.Style.sectionTitle) }
-                        d("p") { apply(KodeinFont.Style.bodyMedium) }
+                        d("h1") { header(2.6.em) }
+                        d("h2") { header(2.2.em) }
+                        d("h3") { header(1.8.em) }
+                        d("h4") { header(1.4.em) }
                     }
                 },
                 overlayAttrs = {

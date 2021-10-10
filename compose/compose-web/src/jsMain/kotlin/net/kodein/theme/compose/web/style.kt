@@ -7,12 +7,9 @@ import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.css.*
 
 
-private val letterSpacing = KodeinFont.Dimension.letterSpacing.em
-private val lineHeight = KodeinFont.Dimension.lineHeight.em
-
 public val KodeinColor.Color.css: CSSColorValue get() = Color("#$rgb")
 
-public val KodeinFont.Size.Size.rem: CSSSizeValue<CSSUnit.rem> get() = factor.cssRem
+public val KodeinFont.Size.Size.em: CSSSizeValue<CSSUnit.em> get() = factor.em
 
 public val KodeinFont.Style.FontWeight.css: Int get() = when (this) {
     KodeinFont.Style.FontWeight.Medium -> 500
@@ -26,11 +23,11 @@ public val KodeinFont.Style.TextAlign.css: String get() = when (this) {
 
 public fun CSSBuilder.apply(style: KodeinFont.Style.Style) {
     fontFamily(style.font.name)
-    fontSize(style.size.rem)
+    fontSize(style.size.em)
     fontWeight(style.weight.css)
     textAlign(style.align.css)
-    letterSpacing(letterSpacing)
-    lineHeight(lineHeight)
+    letterSpacing(KodeinFont.Dimension.letterSpacing.em)
+    lineHeight(KodeinFont.Dimension.lineHeight.em)
 }
 
 public object KodeinStyle : StyleSheet(InHeadRulesHolder()) {
