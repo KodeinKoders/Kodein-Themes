@@ -7,7 +7,6 @@ import net.kodein.theme.compose.web.Logo
 import net.kodein.theme.compose.web.css
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
-import kotlin.time.Duration
 
 
 public data class KodeinFrameworkComponent(
@@ -17,12 +16,10 @@ public data class KodeinFrameworkComponent(
 )
 
 public fun kodeinFrameworkSlide(
-    inFlip: Boolean = true,
     component: KodeinFrameworkComponent? = null
 ): Slide = Slide(
     "kodein-framework",
     stateCount = if (component != null) 3 else 2,
-    inAnimation = if (inFlip) Animations.Flip(Duration.seconds(2)) else null,
     config = {
         OverlayAttrs {
             style {

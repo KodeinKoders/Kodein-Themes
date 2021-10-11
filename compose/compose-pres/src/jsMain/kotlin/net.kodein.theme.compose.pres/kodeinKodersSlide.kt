@@ -1,6 +1,5 @@
 package net.kodein.theme.compose.pres
 
-import net.kodein.pres.Animations
 import net.kodein.pres.Slide
 import net.kodein.pres.Transitions
 import net.kodein.pres.shownIf
@@ -10,15 +9,11 @@ import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Img
 import org.jetbrains.compose.web.dom.Text
-import kotlin.time.Duration
 
 
-public fun kodeinKodersSlide(
-    outFlip: Boolean = true
-): Slide = Slide(
+public val kodeinKodersSlide: Slide = Slide(
     name = "kodein-koders",
-    stateCount = 2,
-    outAnimation = if (outFlip) Animations.Flip(Duration.seconds(2)) else null
+    stateCount = 2
 ) { state ->
     Div({
         css {
