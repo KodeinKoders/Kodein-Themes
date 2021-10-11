@@ -50,8 +50,6 @@ public fun kodeinPres(
                         fontFamily(KodeinFont.main.name, "sans-serif")
                         fontWeight(KodeinFont.Style.FontWeight.Regular.css)
                         textAlign("start")
-                        letterSpacing(KodeinFont.Dimension.letterSpacing.em)
-//                        lineHeight(KodeinFont.Dimension.lineHeight.em)
 
                         // Slide theme
                         backgroundColor(KodeinColor.dark.css)
