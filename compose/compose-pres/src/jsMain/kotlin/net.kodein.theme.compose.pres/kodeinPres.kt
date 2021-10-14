@@ -1,10 +1,8 @@
 package net.kodein.theme.compose.pres
 
+import androidx.compose.runtime.Composable
 import kotlinx.browser.document
-import net.kodein.pres.PresentationSlidesBuilder
-import net.kodein.pres.overlayedPresentationContainer
-import net.kodein.pres.presentationAppInBody
-import net.kodein.pres.progress
+import net.kodein.pres.*
 import net.kodein.pres.util.d
 import net.kodein.pres.util.transition
 import net.kodein.theme.KodeinColor
@@ -15,6 +13,10 @@ import net.kodein.theme.compose.web.em
 import net.kodein.theme.installPicon
 import org.jetbrains.compose.web.ExperimentalComposeWebApi
 import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.AttrBuilderContext
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.Text
+import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLLinkElement
 
 
@@ -28,6 +30,32 @@ private fun CSSBuilder.header(size: CSSSizeValue<CSSUnit.em>) {
 //    lineHeight(KodeinFont.Dimension.lineHeight.em)
 }
 
+public class KodeinAttrs(
+    override val containerAttrs: AttrBuilderContext<HTMLDivElement>? = null,
+    override val overlayAttrs: AttrBuilderContext<HTMLDivElement>? = null,
+    public val workInProgress: Boolean = false
+) : OverlayAttrs
+
+@Composable
+private fun WorkInProgress(show: Boolean) {
+    Div({
+        css {
+            position(Position.Absolute)
+            fontSize(1.8.em)
+            fontWeight(800)
+            backgroundColor(KodeinColor.kuivre.css)
+            color(Color.white)
+            padding(0.1.em, 2.em)
+            transform { rotate(45.deg) }
+            top(2.8.em)
+            right((-2.8).em)
+            transition { "opacity"(1.s) }
+            opacity(if (show) 1.0 else 0.0)
+        }
+    }) {
+        Text("Work In Progress!")
+    }
+}
 
 public fun kodeinPres(
     slides: PresentationSlidesBuilder.() -> Unit
@@ -84,6 +112,7 @@ public fun kodeinPres(
                 }
             ) {
                 content()
+                WorkInProgress((slideConfig as? KodeinAttrs)?.workInProgress ?: false)
                 progress(Color("#651B20"))
             }
         },
