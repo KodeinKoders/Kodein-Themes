@@ -17,7 +17,7 @@ public val kodeinKodersSlide: Slide = Slide(
 ) { state ->
     Div({
         css {
-            fontSize(8.em)
+            fontSize(4.em)
         }
     }) {
         Logo(

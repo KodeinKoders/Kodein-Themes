@@ -37,7 +37,7 @@ public fun kodeinFrameworkSlide(
 ) { state ->
     Div({
         css {
-            fontSize(7.em)
+            fontSize(3.5.em)
         }
     }) {
         Logo(

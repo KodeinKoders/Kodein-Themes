@@ -41,7 +41,7 @@ public fun Logo(
     }) {
         Img("img/logo/monogram-$monogramColor.svg", "Logo") {
             css {
-                height(1.em)
+                height(2.em)
                 marginRight(0.25.em)
             }
         }
@@ -52,13 +52,13 @@ public fun Logo(
                 flexDirection(FlexDirection.Column)
                 justifyContent(JustifyContent.Center)
                 alignItems(AlignItems.Start)
-                height(1.em)
+                height(2.em)
                 color(textColor)
             }
         }) {
             Span({
                 css {
-                    fontSize(0.5.em)
+                    fontSize(1.em)
                     fontWeight(700)
                 }
             }) {
@@ -73,7 +73,7 @@ public fun Logo(
             }
             Span({
                 css {
-                    fontSize(0.2.em)
+                    fontSize(0.4.em)
                     marginTop((-0.75).em)
                     marginLeft(0.075.em)
                 }

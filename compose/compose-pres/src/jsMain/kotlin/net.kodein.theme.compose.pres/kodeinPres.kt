@@ -95,7 +95,7 @@ public fun kodeinPres(
                             textAlign("left")
                         }
                         d("a") {
-                            color(KodeinColor.dark.css)
+                            color(KodeinColor.orange.css)
                             textDecoration("none")
                         }
 
