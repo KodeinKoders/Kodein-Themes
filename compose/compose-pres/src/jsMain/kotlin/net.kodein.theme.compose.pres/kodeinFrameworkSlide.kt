@@ -27,7 +27,7 @@ public fun kodeinFrameworkSlide(
                     "background-color"(500.ms)
                 }
                 backgroundColor(
-                    if (slideState < 2 || component == null) Color("#46AF6D")
+                    if (slide.state < 2 || component == null) Color("#46AF6D")
                     else component.color
                 )
             }
