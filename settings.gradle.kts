@@ -13,6 +13,7 @@ include(
     ":base",
     ":base:base-resources",
     ":resources:illustrations",
+    ":resources:asciidoctor",
     ":compose:compose-web",
     ":compose:compose-pres",
     ":compose:compose-pres:compose-pres-resources"

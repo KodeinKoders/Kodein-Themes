@@ -1,0 +1,56 @@
+extends: default
+
+font:
+  catalog:
+    merge: true
+    LCTPicon:
+      normal: LCTPicon/LCTPicon-Regular.ttf
+      italic: LCTPicon/LCTPicon-Light.ttf
+      bold: LCTPicon/LCTPicon-Bold.ttf
+      bold_italic: LCTPicon/LCTPicon-Black.ttf
+    JetBrainsMono:
+      normal: JetBrainsMono/JetBrainsMono-Regular-with-callouts.ttf
+      italic: JetBrainsMono/JetBrainsMono-Italic.ttf
+      bold: JetBrainsMono/JetBrainsMono-Bold.ttf
+      bold_italic: JetBrainsMono/JetBrainsMono-BoldItalic.ttf
+
+base:
+  font-family: LCTPicon
+  align: left
+
+heading:
+  font-color: 6D1761
+
+#link:
+#  font-color: E8441F
+
+code:
+  font-family: JetBrainsMono
+  font-size: 10
+
+literal:
+#  font-color: 480F40
+  font-color: E8441F
+  font-family: JetBrainsMono
+
+title-page:
+  title:
+    font-color: E8441F
+
+footer:
+  pages: +title,+toc
+  height: 16mm
+  padding: [2mm, 0, 6mm, 0]
+  recto:
+    left:
+      content: "image:img/logo/logo-orange.svg[]"
+    right:
+      content: '{page-number}'
+  verso:
+    left:
+      content: "image:img/logo/logo-orange.svg[]"
+    right:
+      content: '{page-number}'
+
+running-content:
+  start-at: title

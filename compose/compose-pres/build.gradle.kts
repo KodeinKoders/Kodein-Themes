@@ -25,9 +25,10 @@ kotlin {
 
                 api(project(":base"))
                 api(project(":compose:compose-web"))
-                api("net.kodein.pres:compose-ur-pres:1.0")
-                api("net.kodein.pres:emojis:1.0")
-                api("net.kodein.pres:source-code:1.0")
+                val cupVer = "1.1.0"
+                api("net.kodein.pres:compose-ur-pres:$cupVer")
+                api("net.kodein.pres:emojis:$cupVer")
+                api("net.kodein.pres:source-code:$cupVer")
             }
         }
 
@@ -35,6 +36,7 @@ kotlin {
             languageSettings {
                 optIn("kotlin.RequiresOptIn")
                 optIn("org.jetbrains.compose.web.ExperimentalComposeWebApi")
+                optIn("org.jetbrains.compose.web.ExperimentalComposeWebStyleApi")
                 optIn("kotlin.time.ExperimentalTime")
             }
         }

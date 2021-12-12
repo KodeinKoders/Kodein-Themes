@@ -1,5 +1,5 @@
 plugins {
-    id("org.jetbrains.compose") version "1.0.0-alpha4-build396" apply false
+    id("org.jetbrains.compose") version "1.0.0-rc6" apply false
 }
 
 subprojects {

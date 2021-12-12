@@ -3,24 +3,18 @@ package net.kodein.theme.compose.pres
 import androidx.compose.runtime.Composable
 import kotlinx.browser.document
 import net.kodein.pres.*
-import net.kodein.pres.util.d
 import net.kodein.pres.util.transformOrigin
 import net.kodein.pres.util.transition
 import net.kodein.theme.KodeinColor
 import net.kodein.theme.KodeinFont
-import net.kodein.theme.compose.web.apply
 import net.kodein.theme.compose.web.css
-import net.kodein.theme.compose.web.em
 import net.kodein.theme.installPicon
-import org.jetbrains.compose.web.ExperimentalComposeWebApi
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.DOMRect
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLLinkElement
-import kotlin.math.min
 
 
 private fun CSSBuilder.header(size: CSSSizeValue<CSSUnit.em>) {
@@ -114,21 +108,21 @@ public fun kodeinPres(
                         color(KodeinColor.cute.css)
 
                         textAlign("center")
-                        d("ul") {
+                        "ul" {
                             textAlign("start")
                         }
-                        d("pre") {
+                        "pre" {
                             textAlign("left")
                         }
-                        d("a") {
+                        "a" {
                             color(KodeinColor.orange.css)
                             textDecoration("none")
                         }
 
-                        d("h1") { header(2.6.em) }
-                        d("h2") { header(2.2.em) }
-                        d("h3") { header(1.8.em) }
-                        d("h4") { header(1.4.em) }
+                        "h1" { header(2.6.em) }
+                        "h2" { header(2.2.em) }
+                        "h3" { header(1.8.em) }
+                        "h4" { header(1.4.em) }
                     }
                 },
                 overlayAttrs = {

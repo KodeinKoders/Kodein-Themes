@@ -1,7 +1,6 @@
 package net.kodein.theme.compose.pres
 
 import net.kodein.pres.*
-import net.kodein.pres.util.d
 import net.kodein.pres.util.transition
 import net.kodein.theme.compose.web.Logo
 import net.kodein.theme.compose.web.css
@@ -89,7 +88,7 @@ public fun kodeinFrameworkSlide(
             marginTop(3.em)
             padding(0.em)
 
-            d("li") {
+            "li" {
                 listStyleType("none")
                 margin(0.5.em)
                 padding(0.6.em, 0.em, 0.4.em, 0.em)
