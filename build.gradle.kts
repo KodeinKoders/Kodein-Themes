@@ -5,7 +5,7 @@ plugins {
 
 allprojects {
     group = "net.kodein.themes"
-    version = "1.2.0"
+    version = "1.2.1"
 
     repositories {
         mavenLocal()
