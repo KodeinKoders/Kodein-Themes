@@ -54,3 +54,8 @@ running-content:
 conum:
   font-family: JetBrainsMono
   font-size: 10
+  line-height: 2.1
+
+caption:
+  font-size: 10
+  font-color: 6D1761
