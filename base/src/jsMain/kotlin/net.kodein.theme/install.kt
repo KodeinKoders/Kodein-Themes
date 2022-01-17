@@ -7,6 +7,6 @@ import org.w3c.dom.HTMLLinkElement
 public fun installPicon() {
     val link = document.createElement("link") as HTMLLinkElement
     link.rel = "stylesheet"
-    link.href = "picon/LCTPicon.css"
+    link.href = "fonts/LCTPicon.css"
     document.head!!.append(link)
 }

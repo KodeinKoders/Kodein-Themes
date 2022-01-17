@@ -6,24 +6,26 @@ import net.kodein.theme.compose.web.Logo
 import net.kodein.theme.compose.web.css
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
+import kotlin.time.Duration.Companion.seconds
 
 
-public data class KodeinFrameworkComponent(
+public data class KodeinOpenSourceComponent(
     val name: String,
+    val usage: String,
     val color: CSSColorValue,
     val targets: List<String> = listOf("Android", "iOS", "Web", "Server", "Desktop")
 )
 
-public fun kodeinFrameworkSlide(
-    component: KodeinFrameworkComponent? = null
+public fun kodeinOpenSourceSlide(
+    component: KodeinOpenSourceComponent? = null
 ): Slide = Slide(
-    "kodein-framework",
+    "kodein-open-source",
     stateCount = if (component != null) 3 else 2,
     config = {
         OverlayAttrs {
             style {
                 if (!moveBetweenSlides) transition {
-                    "background-color"(500.ms)
+                    "background-color"(1.s)
                 }
                 backgroundColor(
                     if (slide.state < 2 || component == null) Color("#46AF6D")
@@ -37,12 +39,80 @@ public fun kodeinFrameworkSlide(
     Div({
         css {
             fontSize(3.5.em)
+            position(Position.Relative)
         }
     }) {
-        Logo(
-            monogramColor = "white",
-            textColor = Color.white,
-            catchPhrase = {
+        Div({
+            css {
+                transition {
+                    "opacity"(1.s)
+                    "transform"(1.s)
+                }
+            }
+            style {
+                if (state >= 2) {
+                    opacity(0)
+                    transform {
+                        translateY((-1).em)
+                    }
+                }
+            }
+        }) {
+            Logo(
+                monogramColor = "white",
+                textColor = Color.white,
+                catchPhrase = {
+                    Text("painless ")
+                    Img(
+                        src = "img/kotlin.svg",
+                        alt = "Kotlin"
+                    ) {
+                        css {
+                            height(0.55.em)
+                        }
+                    }
+                    Text(" multiplatform")
+                },
+                section = {
+                    Text("OpenSource")
+                }
+            )
+        }
+        Div({
+            css {
+                transition {
+                    "opacity"(1.s)
+                    "transform"(1.s)
+                }
+                position(Position.Absolute)
+                top((-0.5).em)
+                left(0.em)
+                width(100.percent)
+                height(2.em)
+                display(DisplayStyle.Flex)
+                flexDirection(FlexDirection.Column)
+                justifyContent(JustifyContent.Center)
+                alignItems(AlignItems.Center)
+                color(Color.white)
+            }
+            style {
+                if (state < 2) {
+                    opacity(0)
+                    transform {
+                        translateY(1.em)
+                    }
+                }
+            }
+        }) {
+            Span {
+                Text(component?.name ?: "???")
+            }
+            Span({
+                css {
+                    fontSize(0.4.em)
+                    marginTop((-0.75).em)
+                }
+            }) {
                 Text("painless ")
                 Img(
                     src = "img/kotlin.svg",
@@ -52,30 +122,9 @@ public fun kodeinFrameworkSlide(
                         height(0.55.em)
                     }
                 }
-                Span({
-                    shownIf(state < 2, Transitions.fontGrow)
-                }) {
-                    Text(" multiplatform")
-                }
-                Span({
-                    hiddenIf(state < 2, Transitions.fontGrow)
-                }) {
-                    Text("dependency injection")
-                }
-            },
-            section = {
-                Span({
-                    shownIf(state < 2, Transitions.fontGrow)
-                }) {
-                    Text("Framework")
-                }
-                Span({
-                    hiddenIf(state < 2, Transitions.fontGrow)
-                }) {
-                    Text("DI")
-                }
+                Text(" ${component?.usage ?: "???"}")
             }
-        )
+        }
     }
 
     Ul({

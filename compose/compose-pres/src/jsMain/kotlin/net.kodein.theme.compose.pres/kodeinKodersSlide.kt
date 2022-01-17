@@ -21,7 +21,7 @@ public val kodeinKodersSlide: Slide = Slide(
         }
     }) {
         Logo(
-            catchPhrase = { Text("painless technology") },
+            catchPhrase = { Text("painless mobile technology") },
             section = { Text("Koders") }
         )
     }
