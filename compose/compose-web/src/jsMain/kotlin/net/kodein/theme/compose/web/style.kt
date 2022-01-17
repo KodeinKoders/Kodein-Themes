@@ -37,7 +37,7 @@ public object KodeinStyle : StyleSheet(InHeadRulesHolder()) {
 
     public val sectionTitle: String by style { apply(KodeinFont.Style.sectionTitle) }
 
-    public val focus: String by style { apply(KodeinFont.Style.focus) }
+    public val focusSection: String by style { apply(KodeinFont.Style.focus) }
 
     public val bodyLarge: String by style { apply(KodeinFont.Style.displayLarge) }
     public val bodyMedium: String by style { apply(KodeinFont.Style.displayMedium) }

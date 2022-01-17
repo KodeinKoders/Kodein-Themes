@@ -8,12 +8,19 @@ import org.jetbrains.compose.web.css.*
 import org.w3c.dom.HTMLStyleElement
 import org.w3c.dom.css.*
 
+private external class CSSKeyframesRule: CSSRule {
+    val cssRules: CSSRuleList
+}
 
-//private fun clearCSSRules(sheet: CSSStyleSheet) {
-//    repeat(sheet.cssRules.length) {
-//        sheet.deleteRule(0)
-//    }
-//}
+private inline fun CSSKeyframesRule.appendRule(cssRule: String) {
+    this.asDynamic().appendRule(cssRule)
+}
+
+private fun clearCSSRules(sheet: CSSStyleSheet) {
+    repeat(sheet.cssRules.length) {
+        sheet.deleteRule(0)
+    }
+}
 
 private fun setCSSRules(sheet: CSSStyleSheet, cssRules: CSSRuleDeclarationList) {
     cssRules.forEach { cssRule ->
@@ -83,7 +90,7 @@ private fun fillRule(
     }
 }
 
-internal fun setProperty(
+private fun setProperty(
     style: CSSStyleDeclaration,
     name: String,
     value: StylePropertyValue
@@ -91,7 +98,7 @@ internal fun setProperty(
     style.setProperty(name, value.toString())
 }
 
-internal fun setVariable(
+private fun setVariable(
     style: CSSStyleDeclaration,
     name: String,
     value: StylePropertyValue
@@ -99,8 +106,7 @@ internal fun setVariable(
     style.setProperty("--$name", value.toString())
 }
 
-
-internal class InHeadRulesHolder : CSSRulesHolder {
+public class InHeadRulesHolder : CSSRulesHolder {
     private val style: HTMLStyleElement = document.createElement("style") as HTMLStyleElement
     private val rules = ArrayList<CSSRuleDeclaration>()
     override val cssRules: CSSRuleDeclarationList get() = rules
@@ -113,6 +119,7 @@ internal class InHeadRulesHolder : CSSRulesHolder {
         rules.add(cssRule)
 
         (style.sheet as? CSSStyleSheet)?.let { cssStylesheet ->
+            clearCSSRules(cssStylesheet)
             setCSSRules(cssStylesheet, cssRules)
         }
     }
