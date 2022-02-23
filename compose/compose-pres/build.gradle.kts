@@ -25,7 +25,7 @@ kotlin {
 
                 api(project(":base"))
                 api(project(":compose:compose-web"))
-                val cupVer = "1.2.0"
+                val cupVer = "1.3.0"
                 api("net.kodein.pres:compose-ur-pres:$cupVer")
                 api("net.kodein.pres:emojis:$cupVer")
                 api("net.kodein.pres:source-code:$cupVer")
