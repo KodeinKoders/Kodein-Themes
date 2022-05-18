@@ -4,11 +4,11 @@ import net.kodein.pres.Slide
 import net.kodein.pres.Transitions
 import net.kodein.pres.shownIf
 import net.kodein.theme.compose.web.Logo
-import net.kodein.theme.compose.web.css
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Img
 import org.jetbrains.compose.web.dom.Text
+import org.kodein.cic.css
 
 
 public val kodeinKodersSlide: Slide = Slide(

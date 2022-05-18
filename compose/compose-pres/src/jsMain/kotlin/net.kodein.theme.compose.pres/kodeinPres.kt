@@ -13,6 +13,7 @@ import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text
+import org.kodein.cic.css
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLLinkElement
 
@@ -89,8 +90,8 @@ public fun kodeinPres(
 
     presentationAppInBody(
         enableRouter = true,
-        presentationContainer = { content ->
-            overlayedPresentationContainer(
+        presentationContainer = { attrs, content ->
+            defaultOverlayedPresentationContainer(
                 containerAttrs = {
                     css {
                         // Set global Slide font
@@ -124,6 +125,7 @@ public fun kodeinPres(
                         "h3" { header(1.8.em) }
                         "h4" { header(1.4.em) }
                     }
+                    attrs?.invoke(this)
                 },
                 overlayAttrs = {
                     style {

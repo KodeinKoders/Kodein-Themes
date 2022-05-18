@@ -24,6 +24,7 @@ kotlin {
                 implementation(compose.runtime)
 
                 api(project(":base"))
+                api("org.kodein.cic:css-in-composable:1.0.1")
             }
         }
 

@@ -2,13 +2,13 @@ package net.kodein.theme.compose.pres
 
 import net.kodein.pres.sourcecode.SegmentAnimationBuilder
 import net.kodein.pres.util.transition
-import net.kodein.theme.compose.web.css
-import org.jetbrains.compose.web.attributes.AttrsBuilder
+import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.css.*
+import org.kodein.cic.css
 import org.w3c.dom.HTMLElement
 
 
-public fun AttrsBuilder<out HTMLElement>.errorUnder(shown: Boolean = true) {
+public fun AttrsScope<out HTMLElement>.errorUnder(shown: Boolean = true) {
     css {
         position(Position.Relative)
         after {

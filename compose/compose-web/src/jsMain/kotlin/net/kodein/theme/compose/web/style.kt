@@ -2,8 +2,6 @@ package net.kodein.theme.compose.web
 
 import net.kodein.theme.KodeinColor
 import net.kodein.theme.KodeinFont
-import net.kodein.theme.compose.web.util.InHeadRulesHolder
-import org.jetbrains.compose.web.attributes.AttrsBuilder
 import org.jetbrains.compose.web.css.*
 
 
@@ -29,20 +27,3 @@ public fun CSSBuilder.apply(style: KodeinFont.Style.Style) {
     letterSpacing(KodeinFont.Dimension.letterSpacing.em)
     lineHeight(KodeinFont.Dimension.lineHeight.em)
 }
-
-public object KodeinStyle : StyleSheet(InHeadRulesHolder()) {
-    public val displayLarge: String by style { apply(KodeinFont.Style.displayLarge) }
-    public val displayMedium: String by style { apply(KodeinFont.Style.displayMedium) }
-    public val displaySmall: String by style { apply(KodeinFont.Style.displaySmall) }
-
-    public val sectionTitle: String by style { apply(KodeinFont.Style.sectionTitle) }
-
-    public val focusSection: String by style { apply(KodeinFont.Style.focus) }
-
-    public val bodyLarge: String by style { apply(KodeinFont.Style.displayLarge) }
-    public val bodyMedium: String by style { apply(KodeinFont.Style.displayMedium) }
-    public val bodySmall: String by style { apply(KodeinFont.Style.displaySmall) }
-}
-
-public fun AttrsBuilder<*>.css(cssBuild: CSSBuilder.() -> Unit): Unit =
-    classes(KodeinStyle.css(cssBuild))

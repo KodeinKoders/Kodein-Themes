@@ -3,10 +3,9 @@ package net.kodein.theme.compose.pres
 import net.kodein.pres.*
 import net.kodein.pres.util.transition
 import net.kodein.theme.compose.web.Logo
-import net.kodein.theme.compose.web.css
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
-import kotlin.time.Duration.Companion.seconds
+import org.kodein.cic.css
 
 
 public data class KodeinOpenSourceComponent(
