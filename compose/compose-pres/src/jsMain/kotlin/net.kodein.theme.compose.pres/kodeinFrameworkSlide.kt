@@ -1,7 +1,6 @@
 package net.kodein.theme.compose.pres
 
 import net.kodein.pres.*
-import net.kodein.pres.util.transition
 import net.kodein.theme.compose.web.Logo
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
@@ -23,8 +22,10 @@ public fun kodeinOpenSourceSlide(
     config = {
         OverlayAttrs {
             style {
-                if (!moveBetweenSlides) transition {
-                    "background-color"(1.s)
+                if (!moveBetweenSlides) {
+                    transitions {
+                        "background-color" { duration = 1.s }
+                    }
                 }
                 backgroundColor(
                     if (slide.state < 2 || component == null) Color("#46AF6D")
@@ -43,9 +44,9 @@ public fun kodeinOpenSourceSlide(
     }) {
         Div({
             css {
-                transition {
-                    "opacity"(1.s)
-                    "transform"(1.s)
+                transitions {
+                    "opacity" { duration = 1.s }
+                    "transform" { duration = 1.s }
                 }
             }
             style {
@@ -79,9 +80,9 @@ public fun kodeinOpenSourceSlide(
         }
         Div({
             css {
-                transition {
-                    "opacity"(1.s)
-                    "transform"(1.s)
+                transitions {
+                    "opacity" { duration = 1.s }
+                    "transform" { duration = 1.s }
                 }
                 position(Position.Absolute)
                 top((-0.5).em)
@@ -145,15 +146,15 @@ public fun kodeinOpenSourceSlide(
                 color(Color.black)
                 flex(1, 0.em)
                 borderRadius(0.5.em)
-                transition {
-                    "box-shadow"(500.ms)
-                    "opacity"(500.ms)
+                transitions {
+                    "box-shadow" { duration = 500.ms }
+                    "opacity" { duration = 500.ms }
                 }
             }
 
-            transition {
-                "height"(500.ms)
-                "opacity"(500.ms)
+            transitions {
+                "height" { duration = 500.ms }
+                "opacity" { duration = 500.ms }
             }
             height(3.5.em)
         }

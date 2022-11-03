@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import kotlinx.browser.document
 import net.kodein.pres.*
 import net.kodein.pres.util.transformOrigin
-import net.kodein.pres.util.transition
 import net.kodein.theme.KodeinColor
 import net.kodein.theme.KodeinFont
 import net.kodein.theme.compose.web.css
@@ -48,7 +47,9 @@ private fun WorkInProgress(show: Boolean, scaleFactor: Double) {
             height(22.cssRem)
             top(0.em)
             right(0.em)
-            transition { "opacity"(1.s) }
+            transitions {
+                "opacity" { duration = 1.s }
+            }
         }
         style {
             opacity(if (show) 1.0 else 0.0)
@@ -79,6 +80,7 @@ private fun WorkInProgress(show: Boolean, scaleFactor: Double) {
 }
 
 public fun kodeinPres(
+    nextOnClick: Boolean = false,
     slides: PresentationSlidesBuilder.() -> Unit
 ) {
     installPicon()
@@ -90,6 +92,7 @@ public fun kodeinPres(
 
     presentationAppInBody(
         enableRouter = true,
+        nextOnClick = nextOnClick,
         presentationContainer = { attrs, content ->
             defaultOverlayedPresentationContainer(
                 containerAttrs = {
@@ -129,7 +132,9 @@ public fun kodeinPres(
                 },
                 overlayAttrs = {
                     style {
-                        transition { "background-color"(slideAnimationDuration.inWholeMilliseconds.ms) }
+                        transitions {
+                            "background-color" { duration = slideAnimationDuration.inWholeMilliseconds.ms }
+                        }
                     }
                 }
             ) {
