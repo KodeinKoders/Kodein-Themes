@@ -25,7 +25,7 @@ code:
   font-family: JetBrainsMono
   font-size: 10
 
-literal:
+codespan:
   font-color: E8441F
   font-family: JetBrainsMono
 
