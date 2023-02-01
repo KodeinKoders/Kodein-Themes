@@ -1,14 +1,9 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    kotlin("multiplatform") version "1.7.20" apply false
-    id("net.kodein.gradle.resources.resource-files") version "1.0.0" apply false
+    alias(libs.plugins.kotlin.multiplatform) apply false
 }
 
 allprojects {
     group = "net.kodein.themes"
-    version = "1.8.1"
-
-    repositories {
-        mavenLocal()
-        mavenCentral()
-    }
+    version = "1.9.0"
 }

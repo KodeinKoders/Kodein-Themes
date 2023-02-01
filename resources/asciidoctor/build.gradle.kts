@@ -1,8 +1,9 @@
 plugins {
-    id("net.kodein.gradle.resources.resource-files")
+    @Suppress("DSL_SCOPE_VIOLATION")
+    alias(libs.plugins.resourceFiles)
     `maven-publish`
 }
 
 dependencies {
-    resourceFiles(project(":base:base-resources"))
+    resourceFiles(projects.base.baseResources)
 }

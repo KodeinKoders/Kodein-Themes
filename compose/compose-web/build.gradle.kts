@@ -1,6 +1,7 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    kotlin("multiplatform")
-    id("org.jetbrains.compose")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.compose)
     `maven-publish`
 }
 
@@ -18,19 +19,18 @@ kotlin {
     }
 
     sourceSets {
-        val jsMain by getting {
+        named("jsMain") {
             dependencies {
                 implementation(compose.web.core)
                 implementation(compose.runtime)
 
-                api(project(":base"))
-                api("org.kodein.cic:css-in-composable:1.2.0")
+                api(projects.base)
+                api(libs.cssInComposable)
             }
         }
 
         all {
             languageSettings {
-                optIn("kotlin.RequiresOptIn")
                 optIn("org.jetbrains.compose.web.ExperimentalComposeWebApi")
                 optIn("org.jetbrains.compose.web.ExperimentalComposeWebStyleApi")
             }

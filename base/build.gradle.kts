@@ -1,5 +1,6 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    kotlin("multiplatform")
+    alias(libs.plugins.kotlin.multiplatform)
     `maven-publish`
 }
 
@@ -8,7 +9,7 @@ kotlin {
 
     jvm()
 
-    js(BOTH) {
+    js(IR) {
         browser()
     }
 
