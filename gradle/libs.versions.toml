@@ -1,9 +1,9 @@
 [versions]
-compose = "1.3.0"
-cssInComposable = "1.3.0"
-kotlin = "1.8.0"
+compose = "1.5.2"
+cssInComposable = "1.5.0"
+kotlin = "1.9.0"
 resourceFiles = "1.0.0"
-composeUrPres = "1.7.0"
+composeUrPres = "1.9.0"
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
@@ -11,7 +11,7 @@ compose = { id = "org.jetbrains.compose", version.ref = "compose" }
 resourceFiles = { id = "net.kodein.gradle.resources.resource-files", version.ref = "resourceFiles" }
 
 [libraries]
-cssInComposable = { module = "org.kodein.cic:css-in-composable", version.ref = "cssInComposable" }
-composeUrPres = { module = "net.kodein.pres:compose-ur-pres", version.ref = "composeUrPres" }
-composeUrPres-emojis = { module = "net.kodein.pres:emojis", version.ref = "composeUrPres" }
-composeUrPres-sourceCode = { module = "net.kodein.pres:source-code", version.ref = "composeUrPres" }
+cssInComposable = { module = "org.kodein.compose.html.css:css-in-composable", version.ref = "cssInComposable" }
+composeUrPres = { module = "org.kodein.compose.html.pres:compose-ur-pres", version.ref = "composeUrPres" }
+composeUrPres-emojis = { module = "org.kodein.compose.html.pres:emojis", version.ref = "composeUrPres" }
+composeUrPres-sourceCode = { module = "org.kodein.compose.html.pres:source-code", version.ref = "composeUrPres" }

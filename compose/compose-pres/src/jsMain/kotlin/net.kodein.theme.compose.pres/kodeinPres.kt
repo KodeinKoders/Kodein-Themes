@@ -2,17 +2,54 @@ package net.kodein.theme.compose.pres
 
 import androidx.compose.runtime.Composable
 import kotlinx.browser.document
-import net.kodein.pres.*
-import net.kodein.pres.util.transformOrigin
 import net.kodein.theme.KodeinColor
 import net.kodein.theme.KodeinFont
 import net.kodein.theme.compose.web.css
 import net.kodein.theme.installPicon
-import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.css.CSSBuilder
+import org.jetbrains.compose.web.css.CSSSizeValue
+import org.jetbrains.compose.web.css.CSSUnit
+import org.jetbrains.compose.web.css.Color
+import org.jetbrains.compose.web.css.Position
+import org.jetbrains.compose.web.css.backgroundColor
+import org.jetbrains.compose.web.css.backgroundImage
+import org.jetbrains.compose.web.css.backgroundPosition
+import org.jetbrains.compose.web.css.backgroundRepeat
+import org.jetbrains.compose.web.css.backgroundSize
+import org.jetbrains.compose.web.css.bottom
+import org.jetbrains.compose.web.css.color
+import org.jetbrains.compose.web.css.cssRem
+import org.jetbrains.compose.web.css.deg
+import org.jetbrains.compose.web.css.em
+import org.jetbrains.compose.web.css.fontFamily
+import org.jetbrains.compose.web.css.fontSize
+import org.jetbrains.compose.web.css.fontWeight
+import org.jetbrains.compose.web.css.height
+import org.jetbrains.compose.web.css.left
+import org.jetbrains.compose.web.css.letterSpacing
+import org.jetbrains.compose.web.css.margin
+import org.jetbrains.compose.web.css.ms
+import org.jetbrains.compose.web.css.opacity
+import org.jetbrains.compose.web.css.padding
+import org.jetbrains.compose.web.css.position
+import org.jetbrains.compose.web.css.right
+import org.jetbrains.compose.web.css.s
+import org.jetbrains.compose.web.css.textAlign
+import org.jetbrains.compose.web.css.textDecoration
+import org.jetbrains.compose.web.css.top
+import org.jetbrains.compose.web.css.transform
+import org.jetbrains.compose.web.css.transitions
+import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text
-import org.kodein.cic.css
+import org.kodein.compose.html.css.css
+import org.kodein.compose.html.pres.OverlayAttrs
+import org.kodein.compose.html.pres.SlidesBuilder
+import org.kodein.compose.html.pres.defaultOverlayedPresentationContainer
+import org.kodein.compose.html.pres.presentationAppInBody
+import org.kodein.compose.html.pres.progress
+import org.kodein.compose.html.pres.util.transformOrigin
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLLinkElement
 
@@ -24,7 +61,6 @@ private fun CSSBuilder.header(size: CSSSizeValue<CSSUnit.em>) {
     fontWeight(KodeinFont.Style.FontWeight.Medium.css)
     textAlign("center")
     letterSpacing(KodeinFont.Dimension.letterSpacing.em)
-//    lineHeight(KodeinFont.Dimension.lineHeight.em)
 }
 
 public class KodeinAttrs(
@@ -80,8 +116,7 @@ private fun WorkInProgress(show: Boolean, scaleFactor: Double) {
 }
 
 public fun kodeinPres(
-    nextOnClick: Boolean = false,
-    slides: PresentationSlidesBuilder.() -> Unit
+    slides: SlidesBuilder.() -> Unit
 ) {
     installPicon()
 
@@ -92,7 +127,6 @@ public fun kodeinPres(
 
     presentationAppInBody(
         enableRouter = true,
-        nextOnClick = nextOnClick,
         presentationContainer = { attrs, content ->
             defaultOverlayedPresentationContainer(
                 containerAttrs = {

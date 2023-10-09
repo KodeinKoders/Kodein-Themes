@@ -1,15 +1,15 @@
 package net.kodein.theme.compose.pres
 
-import net.kodein.pres.Animations
-import net.kodein.pres.Slide
+import org.kodein.compose.html.pres.Animations
+import org.kodein.compose.html.pres.SlidesBuilder
 import kotlin.time.Duration.Companion.seconds
 
 
-public fun kodeinSlides(component: KodeinOpenSourceComponent? = null): List<Slide> = listOf(
-    kodeinKodersSlide.copy(
+public fun SlidesBuilder.kodeinSlides(component: KodeinOpenSourceComponent? = null) {
+    +kodeinKodersSlide.copy(
         outAnimation = Animations.Flip(2.seconds)
-    ),
-    kodeinOpenSourceSlide(component).copy(
+    )
+    +kodeinOpenSourceSlide(component).copy(
         inAnimation = Animations.Flip(2.seconds)
     )
-)
+}

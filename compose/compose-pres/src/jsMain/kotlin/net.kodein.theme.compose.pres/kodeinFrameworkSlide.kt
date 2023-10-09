@@ -1,10 +1,48 @@
 package net.kodein.theme.compose.pres
 
-import net.kodein.pres.*
 import net.kodein.theme.compose.web.Logo
-import org.jetbrains.compose.web.css.*
-import org.jetbrains.compose.web.dom.*
-import org.kodein.cic.css
+import org.jetbrains.compose.web.css.AlignItems
+import org.jetbrains.compose.web.css.CSSColorValue
+import org.jetbrains.compose.web.css.Color
+import org.jetbrains.compose.web.css.DisplayStyle
+import org.jetbrains.compose.web.css.FlexDirection
+import org.jetbrains.compose.web.css.JustifyContent
+import org.jetbrains.compose.web.css.Position
+import org.jetbrains.compose.web.css.alignItems
+import org.jetbrains.compose.web.css.backgroundColor
+import org.jetbrains.compose.web.css.borderRadius
+import org.jetbrains.compose.web.css.color
+import org.jetbrains.compose.web.css.display
+import org.jetbrains.compose.web.css.em
+import org.jetbrains.compose.web.css.flex
+import org.jetbrains.compose.web.css.flexDirection
+import org.jetbrains.compose.web.css.fontSize
+import org.jetbrains.compose.web.css.height
+import org.jetbrains.compose.web.css.justifyContent
+import org.jetbrains.compose.web.css.left
+import org.jetbrains.compose.web.css.listStyleType
+import org.jetbrains.compose.web.css.margin
+import org.jetbrains.compose.web.css.marginTop
+import org.jetbrains.compose.web.css.ms
+import org.jetbrains.compose.web.css.opacity
+import org.jetbrains.compose.web.css.padding
+import org.jetbrains.compose.web.css.percent
+import org.jetbrains.compose.web.css.position
+import org.jetbrains.compose.web.css.s
+import org.jetbrains.compose.web.css.textAlign
+import org.jetbrains.compose.web.css.top
+import org.jetbrains.compose.web.css.transform
+import org.jetbrains.compose.web.css.transitions
+import org.jetbrains.compose.web.css.width
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.Img
+import org.jetbrains.compose.web.dom.Li
+import org.jetbrains.compose.web.dom.Span
+import org.jetbrains.compose.web.dom.Text
+import org.jetbrains.compose.web.dom.Ul
+import org.kodein.compose.html.css.css
+import org.kodein.compose.html.pres.OverlayAttrs
+import org.kodein.compose.html.pres.Slide
 
 
 public data class KodeinOpenSourceComponent(

@@ -1,9 +1,22 @@
 package net.kodein.theme.compose.pres
 
-import net.kodein.pres.sourcecode.SegmentAnimationBuilder
 import org.jetbrains.compose.web.attributes.AttrsScope
-import org.jetbrains.compose.web.css.*
-import org.kodein.cic.css
+import org.jetbrains.compose.web.css.Position
+import org.jetbrains.compose.web.css.backgroundImage
+import org.jetbrains.compose.web.css.backgroundPosition
+import org.jetbrains.compose.web.css.backgroundRepeat
+import org.jetbrains.compose.web.css.backgroundSize
+import org.jetbrains.compose.web.css.bottom
+import org.jetbrains.compose.web.css.left
+import org.jetbrains.compose.web.css.ms
+import org.jetbrains.compose.web.css.opacity
+import org.jetbrains.compose.web.css.position
+import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.css.right
+import org.jetbrains.compose.web.css.top
+import org.jetbrains.compose.web.css.transitions
+import org.kodein.compose.html.css.css
+import org.kodein.compose.html.pres.sourcecode.SegmentAnimationBuilder
 import org.w3c.dom.HTMLElement
 
 
