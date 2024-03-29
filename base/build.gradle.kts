@@ -1,4 +1,5 @@
-@Suppress("DSL_SCOPE_VIOLATION")
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     `maven-publish`
@@ -13,9 +14,8 @@ kotlin {
         browser()
     }
 
-    targets.all {
-        compilations.all {
-            kotlinOptions.allWarningsAsErrors = true
-        }
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
     }
 }

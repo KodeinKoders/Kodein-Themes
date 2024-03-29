@@ -16,7 +16,7 @@ public abstract class ValueHolder<Self : ValueHolder<Self, Value>, Value> {
     public operator fun get(name: String): Value = byName.getValue(name)
 
     public fun nameOf(value: Value): String = byValue.getValue(value)
+
     @Suppress("UNCHECKED_CAST")
     public inline fun nameOf(value: Self.() -> Value): String = nameOf(value.invoke(this as Self))
-
 }

@@ -21,12 +21,13 @@ dependencyResolutionManagement {
 
 include(
     ":base",
-    ":base:base-resources",
-    ":resources:illustrations",
-    ":resources:asciidoctor",
-    ":compose:compose-web",
-    ":compose:compose-pres",
-    ":compose:compose-pres:compose-pres-resources"
+    ":base:resources:base-resources-font",
+    ":base:resources:base-resources-svg",
+    ":asciidoctor-resources",
+    ":compose",
+    ":compose:compose-m2",
+    ":cup",
+    ":cup:cup-resources",
 )
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
