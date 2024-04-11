@@ -13,6 +13,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -28,6 +29,7 @@ import net.kodein.theme.compose.img.KodeinMonogram
 import net.kodein.theme.compose.m2.KodeinMaterialColors
 import net.kodein.theme.compose.m2.KodeinMaterialTheme
 import org.jetbrains.compose.resources.painterResource
+import org.kodein.emoji.compose.EmojiService
 import org.kodein.pres.LocalPresentationState
 import org.kodein.pres.Presentation
 import org.kodein.pres.PresentationState
@@ -68,6 +70,11 @@ private fun BoxScope.ProgressBar(presentationState: PresentationState) {
 public fun KodeinPresentation(
     slides: SlideGroup
 ) {
+    remember {
+        // https://github.com/kosi-libs/Emoji.kt?tab=readme-ov-file#initializing-the-emoji-service
+        EmojiService.initialize()
+    }
+
     KodeinCupMaterialTheme {
         Presentation(
             slides = slides,
