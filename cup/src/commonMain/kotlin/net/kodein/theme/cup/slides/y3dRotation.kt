@@ -10,7 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.LayoutDirection
-import org.kodein.pres.TransitionSet
+import net.kodein.cup.TransitionSet
 
 
 @OptIn(ExperimentalAnimationApi::class)

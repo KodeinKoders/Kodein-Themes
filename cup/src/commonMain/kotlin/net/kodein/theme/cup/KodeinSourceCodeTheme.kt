@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import org.kodein.pres.sa.SourceCodeTheme
+import net.kodein.cup.sa.SourceCodeTheme
 
 
 public val KodeinSourceCodeTheme: SourceCodeTheme = { cls ->

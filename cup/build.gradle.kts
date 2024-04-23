@@ -25,7 +25,7 @@ kotlin {
 
             api(projects.compose.composeM2)
 
-            implementation(libs.bundles.composeUrPres)
+            implementation(libs.bundles.cup)
         }
     }
 }

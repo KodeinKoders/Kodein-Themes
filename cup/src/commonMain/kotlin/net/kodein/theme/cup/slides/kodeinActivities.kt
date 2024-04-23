@@ -33,6 +33,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.TextStyle
@@ -49,11 +50,11 @@ import net.kodein.theme.cup.KodeinPresentationBackground
 import net.kodein.theme.cup.img.KotlinMonogram
 import net.kodein.theme.cup.kStyled
 import net.kodein.theme.cup.widget.KodeinLogo
-import org.kodein.pres.SLIDE_SIZE_16_9
-import org.kodein.pres.Slide
-import org.kodein.pres.Slides
-import org.kodein.pres.TransitionSet
-import org.kodein.pres.copyWithInsideTransitions
+import net.kodein.cup.SLIDE_SIZE_16_9
+import net.kodein.cup.Slide
+import net.kodein.cup.Slides
+import net.kodein.cup.TransitionSet
+import net.kodein.cup.copyWithInsideTransitions
 
 
 @Composable
@@ -213,12 +214,13 @@ public val kodeinActivities: Slides = Slides(
     kodeinKoders,
     kodeinOpenSource,
     specs = {
+        val layoutDirection = LocalLayoutDirection.current
         this
             .copy(size = SLIDE_SIZE_16_9)
             .copyWithInsideTransitions(
                 config = it,
-                startTransitions = TransitionSet.y3dRotation(it.layoutDirection),
-                endTransitions = TransitionSet.y3dRotation(it.layoutDirection),
+                startTransitions = TransitionSet.y3dRotation(layoutDirection),
+                endTransitions = TransitionSet.y3dRotation(layoutDirection),
             )
     }
 )

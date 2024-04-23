@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import net.kodein.cup.*
 import net.kodein.theme.KodeinColors
 import net.kodein.theme.compose.Color
 import net.kodein.theme.compose.KodeinVectorImages
@@ -30,15 +31,10 @@ import net.kodein.theme.compose.m2.KodeinMaterialColors
 import net.kodein.theme.compose.m2.KodeinMaterialTheme
 import org.jetbrains.compose.resources.painterResource
 import org.kodein.emoji.compose.EmojiService
-import org.kodein.pres.LocalPresentationState
-import org.kodein.pres.Presentation
-import org.kodein.pres.PresentationState
-import org.kodein.pres.SlideGroup
-import org.kodein.pres.imgexp.imageExport
-import org.kodein.pres.laser.laser
-import org.kodein.pres.sa.LocalDefaultSourceCodeTextStyle
-import org.kodein.pres.sa.LocalDefaultSourceCodeTheme
-import org.kodein.pres.speaker.speakerMode
+import net.kodein.cup.laser.laser
+import net.kodein.cup.sa.LocalDefaultSourceCodeTextStyle
+import net.kodein.cup.sa.LocalDefaultSourceCodeTheme
+import net.kodein.cup.speaker.speakerWindow
 
 
 @Composable
@@ -79,12 +75,11 @@ public fun KodeinPresentation(
         Presentation(
             slides = slides,
             configuration = {
-                speakerMode()
-                imageExport()
+                speakerWindow()
                 laser()
             },
             backgroundColor = MaterialTheme.colors.background
-        ) {
+        ) { slidesContent ->
             Image(
                 painter = rememberVectorPainter(KodeinVectorImages.Logo.KodeinMonogram),
                 contentDescription = null,
@@ -115,7 +110,7 @@ public fun KodeinPresentation(
                         LocalDefaultSourceCodeTheme provides KodeinSourceCodeTheme,
                         LocalDefaultSourceCodeTextStyle provides TextStyle(fontFamily = JetBrainsMono)
                     ) {
-                        this@Presentation.Slides()
+                        slidesContent()
                     }
                 }
                 ProgressBar(presentationState)

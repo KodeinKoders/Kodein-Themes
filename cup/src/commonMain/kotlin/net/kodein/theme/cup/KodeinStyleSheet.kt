@@ -3,8 +3,8 @@ package net.kodein.theme.cup
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
-import org.kodein.pres.ui.SpanStyleSheet
-import org.kodein.pres.ui.styled
+import net.kodein.cup.ui.SpanStyleSheet
+import net.kodein.cup.ui.styled
 
 
 public object KodeinStyleSheet : SpanStyleSheet() {

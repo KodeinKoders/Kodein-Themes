@@ -1,8 +1,8 @@
 package net.kodein.theme.cup
 
 import androidx.compose.runtime.Composable
-import org.kodein.pres.PresentationPreview
-import org.kodein.pres.Slide
+import net.kodein.cup.PresentationPreview
+import net.kodein.cup.Slide
 
 
 @Composable

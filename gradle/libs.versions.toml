@@ -1,6 +1,6 @@
 [versions]
 compose = "1.6.1"
-composeUrPres = "0.1.0"
+cup = "1.0.0-Beta-01"
 kotlin = "1.9.23"
 resourceFiles = "1.0.0"
 
@@ -10,17 +10,15 @@ compose = { id = "org.jetbrains.compose", version.ref = "compose" }
 resourceFiles = { id = "net.kodein.gradle.resources.resource-files", version.ref = "resourceFiles" }
 
 [libraries]
-composeUrPres = { module = "org.kodein.pres:cup", version.ref = "composeUrPres" }
-composeUrPres-externalPresenter = { module = "org.kodein.pres:cup-external-presenter-mode", version.ref = "composeUrPres" }
-composeUrPres-imageExport = { module = "org.kodein.pres:cup-image-export", version.ref = "composeUrPres" }
-composeUrPres-laser = { module = "org.kodein.pres:cup-laser", version.ref = "composeUrPres" }
-composeUrPres-speakerMode = { module = "org.kodein.pres:cup-speaker-mode", version.ref = "composeUrPres" }
+cup = { module = "net.kodein.cup:cup", version.ref = "cup" }
+cup-sourceCode = { module = "net.kodein.cup:cup-source-code", version.ref = "cup" }
+cup-plugin-laser = { module = "net.kodein.cup:cup-laser", version.ref = "cup" }
+cup-plugin-speakerWindow = { module = "net.kodein.cup:cup-speaker-window", version.ref = "cup" }
 
 [bundles]
-composeUrPres = [
-    "composeUrPres",
-    "composeUrPres-externalPresenter",
-    "composeUrPres-imageExport",
-    "composeUrPres-laser",
-    "composeUrPres-speakerMode"
+cup = [
+    "cup",
+    "cup-sourceCode",
+    "cup-plugin-laser",
+    "cup-plugin-speakerWindow"
 ]
