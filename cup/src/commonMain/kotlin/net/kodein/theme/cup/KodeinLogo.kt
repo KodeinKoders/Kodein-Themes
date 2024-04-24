@@ -1,4 +1,4 @@
-package net.kodein.theme.cup.widget
+package net.kodein.theme.cup
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -21,7 +21,6 @@ import net.kodein.theme.KodeinColors
 import net.kodein.theme.compose.Color
 import net.kodein.theme.compose.KodeinVectorImages
 import net.kodein.theme.compose.img.KodeinMonogram
-import net.kodein.theme.cup.kStyled
 
 @Composable
 public fun KodeinLogo(

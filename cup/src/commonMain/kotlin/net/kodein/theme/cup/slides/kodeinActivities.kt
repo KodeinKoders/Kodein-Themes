@@ -49,7 +49,7 @@ import net.kodein.theme.compose.LCTPicon
 import net.kodein.theme.cup.KodeinPresentationBackground
 import net.kodein.theme.cup.img.KotlinMonogram
 import net.kodein.theme.cup.kStyled
-import net.kodein.theme.cup.widget.KodeinLogo
+import net.kodein.theme.cup.KodeinLogo
 import net.kodein.cup.SLIDE_SIZE_16_9
 import net.kodein.cup.Slide
 import net.kodein.cup.Slides

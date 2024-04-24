@@ -17,10 +17,8 @@ import net.kodein.cup.TransitionSet
 public fun TransitionSet.Companion.y3dRotation(layoutDirection: LayoutDirection): TransitionSet {
     val y3dRSpec = tween<Float>(2_000)
     return TransitionSet(
-        enterForward = fadeIn(y3dRSpec),
-        enterBackward = fadeIn(y3dRSpec),
-        exitForward = fadeOut(y3dRSpec),
-        exitBackward = fadeOut(y3dRSpec),
+        enter = { fadeIn(y3dRSpec) },
+        exit = { fadeOut(y3dRSpec) },
         modifier = { type ->
             val dir = when (layoutDirection) {
                 LayoutDirection.Ltr -> 1
@@ -30,15 +28,9 @@ public fun TransitionSet.Companion.y3dRotation(layoutDirection: LayoutDirection)
             val rotation by transition.animateFloat(
                 transitionSpec = { y3dRSpec }
             ) {
-                val max = when (type) {
-                    TransitionSet.Type.EnterForward -> 180f * dir
-                    TransitionSet.Type.EnterBackward -> -180f * dir
-                    TransitionSet.Type.ExitForward -> -180f * dir
-                    TransitionSet.Type.ExitBackward -> 180f * dir
-                }
                 when (it) {
-                    EnterExitState.PreEnter -> max
-                    EnterExitState.PostExit -> max
+                    EnterExitState.PreEnter -> if (type.isForward) (180f * dir) else (-180f * dir)
+                    EnterExitState.PostExit -> if (type.isForward) (-180f * dir) else (180f * dir)
                     EnterExitState.Visible -> 0f
                 }
             }

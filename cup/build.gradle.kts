@@ -18,14 +18,15 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.components.resources)
+            api(compose.runtime)
+            api(compose.foundation)
+            api(compose.material)
+            api(compose.materialIconsExtended)
+            api(compose.components.resources)
 
             api(projects.compose.composeM2)
-
-            implementation(libs.bundles.cup)
+            api(libs.bundles.cup)
+            api(libs.emoji.compose)
         }
     }
 }

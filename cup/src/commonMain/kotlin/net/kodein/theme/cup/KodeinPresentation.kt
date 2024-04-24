@@ -9,7 +9,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -20,21 +19,15 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import net.kodein.cup.*
+import net.kodein.cup.laser.laser
+import net.kodein.cup.speaker.speakerWindow
 import net.kodein.theme.KodeinColors
 import net.kodein.theme.compose.Color
 import net.kodein.theme.compose.KodeinVectorImages
 import net.kodein.theme.compose.img.KodeinMonogram
-import net.kodein.theme.compose.m2.KodeinMaterialColors
-import net.kodein.theme.compose.m2.KodeinMaterialTheme
-import org.jetbrains.compose.resources.painterResource
 import org.kodein.emoji.compose.EmojiService
-import net.kodein.cup.laser.laser
-import net.kodein.cup.sa.LocalDefaultSourceCodeTextStyle
-import net.kodein.cup.sa.LocalDefaultSourceCodeTheme
-import net.kodein.cup.speaker.speakerWindow
 
 
 @Composable
@@ -107,8 +100,6 @@ public fun KodeinPresentation(
                 ) {
                     CompositionLocalProvider(
                         LocalContentColor provides MaterialTheme.colors.onBackground,
-                        LocalDefaultSourceCodeTheme provides KodeinSourceCodeTheme,
-                        LocalDefaultSourceCodeTextStyle provides TextStyle(fontFamily = JetBrainsMono)
                     ) {
                         slidesContent()
                     }

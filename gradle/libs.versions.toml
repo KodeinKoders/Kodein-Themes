@@ -1,6 +1,7 @@
 [versions]
-compose = "1.6.1"
+compose = "1.6.2"
 cup = "1.0.0-Beta-01"
+emoji = "1.3.0"
 kotlin = "1.9.23"
 resourceFiles = "1.0.0"
 
@@ -14,6 +15,7 @@ cup = { module = "net.kodein.cup:cup", version.ref = "cup" }
 cup-sourceCode = { module = "net.kodein.cup:cup-source-code", version.ref = "cup" }
 cup-plugin-laser = { module = "net.kodein.cup:cup-laser", version.ref = "cup" }
 cup-plugin-speakerWindow = { module = "net.kodein.cup:cup-speaker-window", version.ref = "cup" }
+emoji-compose = { module = "org.kodein.emoji:emoji-compose-m2", version.ref = "emoji" }
 
 [bundles]
 cup = [
