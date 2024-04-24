@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.dp
 import net.kodein.cup.TransitionSet
 
 
@@ -36,9 +37,10 @@ public fun TransitionSet.Companion.y3dRotation(layoutDirection: LayoutDirection)
             }
 
             Modifier
-                .graphicsLayer {
-                    rotationY = rotation
-                }
+                .graphicsLayer(
+                    rotationY = rotation,
+                    cameraDistance = 28f
+                )
         }
     )
 }
