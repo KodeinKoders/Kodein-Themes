@@ -1,4 +1,4 @@
-package net.kodein.theme.cup
+package net.kodein.theme.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
@@ -27,7 +27,6 @@ private object JetBrainsMonoResources {
     val BoldItalic: FontResource by lazy { FontResource("font/JetBrainsMono-BoldItalic.ttf") }
     val ExtraBold: FontResource by lazy { FontResource("font/JetBrainsMono-ExtraBold.ttf") }
     val ExtraBoldItalic: FontResource by lazy { FontResource("font/JetBrainsMono-ExtraBoldItalic.ttf") }
-
 }
 
 @OptIn(ExperimentalResourceApi::class)
