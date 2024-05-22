@@ -7,6 +7,9 @@
 *~
 .DS_STORE
 
+# KOTLIN
+.kotlin
+
 # GRADLE
 .gradle
 build/

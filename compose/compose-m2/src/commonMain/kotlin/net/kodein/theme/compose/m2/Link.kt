@@ -24,9 +24,7 @@ public fun Link(
     Box(
         modifier = modifier
             .pointerHoverIcon(PointerIcon.Hand)
-            .clickable {
-                uriHandler.openUri(uri)
-            }
+            .clickable { uriHandler.openUri(uri) }
     ) {
         ProvideTextStyle(TextStyle(color = MaterialTheme.colors.primary)) {
             content()

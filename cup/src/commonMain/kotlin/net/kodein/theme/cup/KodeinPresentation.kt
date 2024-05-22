@@ -57,7 +57,8 @@ private fun BoxScope.ProgressBar(presentationState: PresentationState) {
 
 @Composable
 public fun KodeinPresentation(
-    slides: SlideGroup
+    slides: SlideGroup,
+    decoration: @Composable BoxScope.(@Composable BoxScope.() -> Unit) -> Unit = { it() },
 ) {
     remember {
         // https://github.com/kosi-libs/Emoji.kt?tab=readme-ov-file#initializing-the-emoji-service
@@ -94,17 +95,19 @@ public fun KodeinPresentation(
                     .fillMaxSize()
                     .background(overBackground)
             ) {
-                Box(
-                    modifier = Modifier
-                        .padding(8.dp)
-                ) {
-                    CompositionLocalProvider(
-                        LocalContentColor provides MaterialTheme.colors.onBackground,
+                decoration {
+                    Box(
+                        modifier = Modifier
+                            .padding(8.dp)
                     ) {
-                        slidesContent()
+                        CompositionLocalProvider(
+                            LocalContentColor provides MaterialTheme.colors.onBackground,
+                        ) {
+                            slidesContent()
+                        }
                     }
+                    ProgressBar(presentationState)
                 }
-                ProgressBar(presentationState)
             }
         }
     }

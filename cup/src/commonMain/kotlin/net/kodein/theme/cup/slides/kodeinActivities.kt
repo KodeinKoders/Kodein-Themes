@@ -1,26 +1,10 @@
 package net.kodein.theme.cup.slides
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.EnterExitState
-import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.*
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandHorizontally
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkHorizontally
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.material.ProvideTextStyle
@@ -42,19 +26,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import net.kodein.cup.*
 import net.kodein.theme.KodeinColors
 import net.kodein.theme.compose.Color
 import net.kodein.theme.compose.KodeinVectorImages
 import net.kodein.theme.compose.LCTPicon
+import net.kodein.theme.cup.ui.KodeinLogo
 import net.kodein.theme.cup.KodeinPresentationBackground
 import net.kodein.theme.cup.img.KotlinMonogram
 import net.kodein.theme.cup.kStyled
-import net.kodein.theme.cup.KodeinLogo
-import net.kodein.cup.SLIDE_SIZE_16_9
-import net.kodein.cup.Slide
-import net.kodein.cup.Slides
-import net.kodein.cup.TransitionSet
-import net.kodein.cup.copyWithInsideTransitions
 
 
 @Composable
@@ -108,7 +88,7 @@ private fun KotlinDivision(
 private val kodeinKoders by Slide(
     stepCount = 3
 ) { step ->
-    KodeinLogo("Koders") { Text("mobile technology") }
+    KodeinLogo("Koders") { Text("painless mobile technology") }
     AnimatedVisibility(
         visible = step >= 1,
         enter = fadeIn(tween(750)) + expandVertically(tween(750)),
@@ -149,10 +129,11 @@ private val kodeinOpenSource by Slide(
 ) { step ->
     KodeinLogo(
         division = "OpenSource",
-        color = Color.White
+        color = Color.White,
+        url = "https://kodein.org"
     ) {
         Text(
-            text = kStyled { "${IC("kotlin")} multiplatform" },
+            text = kStyled { "painless ${IC("kotlin")} multiplatform" },
             inlineContent = mapOf(
                 "kotlin" to InlineTextContent(Placeholder(0.8.em, 0.8.em, PlaceholderVerticalAlign.Center)) {
                     Image(
