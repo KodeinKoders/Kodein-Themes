@@ -195,13 +195,11 @@ public val kodeinActivities: Slides = Slides(
     kodeinKoders,
     kodeinOpenSource,
     specs = {
-        val layoutDirection = LocalLayoutDirection.current
-        this
-            .copy(size = SLIDE_SIZE_16_9)
-            .copyWithInsideTransitions(
-                config = it,
-                startTransitions = TransitionSet.y3dRotation(layoutDirection),
-                endTransitions = TransitionSet.y3dRotation(layoutDirection),
-            )
+        it.insideTransitionSpecs(
+            startTransitions = TransitionSet.y3dRotation,
+            endTransitions = TransitionSet.y3dRotation,
+        ) + SlideSpecs(
+            size = SLIDE_SIZE_16_9
+        )
     }
 )

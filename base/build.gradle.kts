@@ -9,6 +9,7 @@ kotlin {
     explicitApi()
 
     jvm()
+    jvmToolchain(17)
 
     js(IR) {
         browser()

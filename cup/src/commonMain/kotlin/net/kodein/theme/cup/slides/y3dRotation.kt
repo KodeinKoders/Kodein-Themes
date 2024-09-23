@@ -9,19 +9,20 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import net.kodein.cup.TransitionSet
 
 
 @OptIn(ExperimentalAnimationApi::class)
-public fun TransitionSet.Companion.y3dRotation(layoutDirection: LayoutDirection): TransitionSet {
+public val TransitionSet.Companion.y3dRotation: TransitionSet get() {
     val y3dRSpec = tween<Float>(2_000)
     return TransitionSet(
         enter = { fadeIn(y3dRSpec) },
         exit = { fadeOut(y3dRSpec) },
         modifier = { type ->
-            val dir = when (layoutDirection) {
+            val dir = when (LocalLayoutDirection.current) {
                 LayoutDirection.Ltr -> 1
                 LayoutDirection.Rtl -> -1
             }

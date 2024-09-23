@@ -11,6 +11,7 @@ kotlin {
     explicitApi()
 
     jvm()
+    jvmToolchain(17)
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
