@@ -60,7 +60,7 @@ public fun KodeinLogo(
                 fontWeight = FontWeight.Bold,
                 fontSize = mainFontSize,
                 lineHeight = mainFontSize,
-                modifier = Modifier.height(height * 0.41f)
+                modifier = Modifier.height(height * 0.44f)
             )
             Row(
                 verticalAlignment = Alignment.CenterVertically,

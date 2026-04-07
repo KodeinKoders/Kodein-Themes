@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -11,7 +11,7 @@ kotlin {
     explicitApi()
 
     jvm()
-    jvmToolchain(17)
+    jvmToolchain(21)
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {

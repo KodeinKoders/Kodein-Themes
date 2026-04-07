@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -11,7 +11,7 @@ kotlin {
     explicitApi()
 
     jvm()
-    jvmToolchain(17)
+    jvmToolchain(21)
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
@@ -20,11 +20,11 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(compose.runtime)
-            api(compose.foundation)
-            api(compose.material)
-            api(compose.materialIconsExtended)
-            api(compose.components.resources)
+            api("org.jetbrains.compose.runtime:runtime:1.10.1")
+            api("org.jetbrains.compose.foundation:foundation:1.10.1")
+            api("org.jetbrains.compose.material:material:1.10.1")
+            api("org.jetbrains.compose.material:material-icons-extended:1.7.3")
+            api("org.jetbrains.compose.components:components-resources:1.10.1")
 
             api(projects.compose.composeM2)
             api(libs.bundles.cup)
