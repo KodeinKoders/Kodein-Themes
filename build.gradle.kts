@@ -5,7 +5,7 @@ plugins {
 
 allprojects {
     group = "net.kodein.themes"
-    version = "2.2.0"
+    version = "2.3.0"
 }
 
 subprojects {
