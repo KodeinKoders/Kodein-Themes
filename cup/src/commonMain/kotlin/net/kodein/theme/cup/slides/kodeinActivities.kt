@@ -1,15 +1,31 @@
 package net.kodein.theme.cup.slides
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterExitState
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.InlineTextContent
-import androidx.compose.material.ProvideTextStyle
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.ProvideTextStyle
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -17,7 +33,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.TextStyle
@@ -26,15 +41,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
-import net.kodein.cup.*
+import net.kodein.cup.SLIDE_SIZE_16_9
+import net.kodein.cup.Slide
+import net.kodein.cup.SlideSpecs
+import net.kodein.cup.Slides
+import net.kodein.cup.TransitionSet
+import net.kodein.cup.insideTransitionSpecs
+import net.kodein.cup.plus
 import net.kodein.theme.KodeinColors
 import net.kodein.theme.compose.Color
 import net.kodein.theme.compose.KodeinVectorImages
 import net.kodein.theme.compose.LCTPicon
-import net.kodein.theme.cup.ui.KodeinLogo
 import net.kodein.theme.cup.KodeinPresentationBackground
 import net.kodein.theme.cup.img.KotlinMonogram
 import net.kodein.theme.cup.kStyled
+import net.kodein.theme.cup.ui.KodeinLogo
 
 
 @Composable
@@ -168,7 +189,8 @@ private val kodeinOpenSource by Slide(
                     if (it == EnterExitState.Visible) 1f else 0f
                 }
                 Surface(
-                    elevation = 8.dp,
+                    tonalElevation = 8.dp,
+                    shadowElevation = 8.dp,
                     color = Color(KodeinColors.light),
                     contentColor = Color(KodeinColors.dark),
                     shape = RoundedCornerShape(topStart = 8.dp, bottomEnd = 8.dp),

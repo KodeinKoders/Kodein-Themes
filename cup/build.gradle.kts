@@ -20,15 +20,11 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api("org.jetbrains.compose.runtime:runtime:1.10.1")
-            api("org.jetbrains.compose.foundation:foundation:1.10.1")
-            api("org.jetbrains.compose.material:material:1.10.1")
-            api("org.jetbrains.compose.material:material-icons-extended:1.7.3")
-            api("org.jetbrains.compose.components:components-resources:1.10.1")
+            implementation(libs.bundles.compose)
+            implementation(libs.bundles.cup)
+            implementation(libs.emoji.compose)
 
-            api(projects.compose.composeM2)
-            api(libs.bundles.cup)
-            api(libs.emoji.compose)
+            api(projects.compose)
         }
     }
 }

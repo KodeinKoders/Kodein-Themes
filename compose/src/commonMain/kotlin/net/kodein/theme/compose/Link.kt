@@ -1,10 +1,10 @@
-package net.kodein.theme.compose.m2
+package net.kodein.theme.compose
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ProvideTextStyle
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProvideTextStyle
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.PointerIcon
@@ -26,7 +26,7 @@ public fun Link(
             .pointerHoverIcon(PointerIcon.Hand)
             .clickable { uriHandler.openUri(uri) }
     ) {
-        ProvideTextStyle(TextStyle(color = MaterialTheme.colors.primary)) {
+        ProvideTextStyle(TextStyle(color = MaterialTheme.colorScheme.primary)) {
             content()
         }
     }

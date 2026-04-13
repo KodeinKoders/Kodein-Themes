@@ -1,11 +1,10 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
 }
 
 allprojects {
     group = "net.kodein.themes"
-    version = "2.3.0"
+    version = "3.0.0"
 }
 
 subprojects {

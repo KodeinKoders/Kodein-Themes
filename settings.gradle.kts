@@ -4,7 +4,6 @@ pluginManagement {
     repositories {
         mavenLocal()
         gradlePluginPortal()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
 
@@ -13,7 +12,6 @@ dependencyResolutionManagement {
     repositories {
         mavenLocal()
         mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
         google()
     }
 }
@@ -25,7 +23,6 @@ include(
     ":base:resources:base-resources-svg",
     ":asciidoctor-resources",
     ":compose",
-    ":compose:compose-m2",
     ":cup"
 )
 
