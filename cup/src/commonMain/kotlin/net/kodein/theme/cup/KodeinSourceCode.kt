@@ -30,7 +30,7 @@ public fun KodeinSourceCode(
     debug: Boolean = false
 ) {
     val mergedStyle = TextStyle(fontFamily = JetBrainsMono, fontSize = 12.sp) + style + TextStyle(fontSize = fontSize)
-    Column {
+    Column(modifier) {
         if (file != null) {
             Text(
                 text = file,
@@ -44,7 +44,7 @@ public fun KodeinSourceCode(
             style = mergedStyle,
             theme = KodeinSourceCodeTheme,
             debug = if (debug) SourceCodeDebugColors() else null,
-            modifier = modifier
+            modifier = Modifier
                 .background(Color.DarkGray, RoundedCornerShape(4.dp))
                 .padding(8.dp)
         )

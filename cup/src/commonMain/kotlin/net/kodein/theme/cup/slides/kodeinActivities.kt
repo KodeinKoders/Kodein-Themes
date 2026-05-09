@@ -145,7 +145,7 @@ private val kodeinKoders by Slide(
 
 @OptIn(ExperimentalAnimationApi::class)
 private val kodeinOpenSource by Slide(
-    user = KodeinPresentationBackground(Color(0xFF_46AF6D)),
+    context = KodeinPresentationBackground(Color(0xFF_46AF6D)),
     stepCount = 2
 ) { step ->
     KodeinLogo(

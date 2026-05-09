@@ -89,7 +89,7 @@ public fun KodeinPresentation(
 
             val presentationState = LocalPresentationState.current
             val overBackground by animateColorAsState(
-                targetValue = presentationState.currentSlide.user[KodeinPresentationBackground]?.color ?: Color.Transparent,
+                targetValue = presentationState.currentSlide.context[KodeinPresentationBackground]?.color ?: Color.Transparent,
                 animationSpec = tween(1_500)
             )
             Box(
