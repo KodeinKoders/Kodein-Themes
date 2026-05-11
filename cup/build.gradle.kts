@@ -18,6 +18,11 @@ kotlin {
         browser()
     }
 
+    js {
+        browser()
+        useCommonJs()
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(libs.bundles.compose)

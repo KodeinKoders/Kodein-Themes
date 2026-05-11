@@ -11,8 +11,9 @@ kotlin {
     jvm()
     jvmToolchain(21)
 
-    js(IR) {
+    js {
         browser()
+        useCommonJs()
     }
 
     @OptIn(ExperimentalWasmDsl::class)

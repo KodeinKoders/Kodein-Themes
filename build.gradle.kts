@@ -4,11 +4,13 @@ plugins {
 
 allprojects {
     group = "net.kodein.themes"
-    version = "3.1.0"
+    version = "3.2.0"
 }
 
 subprojects {
-    apply(plugin = "maven-publish")
+    apply {
+        plugin("maven-publish")
+    }
     configure<PublishingExtension> {
         repositories {
             maven {
