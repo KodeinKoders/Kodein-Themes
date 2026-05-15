@@ -50,8 +50,8 @@ import net.kodein.cup.insideTransitionSpecs
 import net.kodein.cup.plus
 import net.kodein.theme.KodeinColors
 import net.kodein.theme.compose.Color
-import net.kodein.theme.compose.KodeinVectorImages
 import net.kodein.theme.compose.LCTPicon
+import net.kodein.theme.compose.drawable.KodeinVectors
 import net.kodein.theme.cup.KodeinPresentationBackground
 import net.kodein.theme.cup.img.KotlinMonogram
 import net.kodein.theme.cup.kStyled
@@ -67,7 +67,7 @@ private fun KotlinDivision(
     Column(modifier) {
         Row {
             Image(
-                painter = rememberVectorPainter(KodeinVectorImages.Logo.KotlinMonogram),
+                painter = rememberVectorPainter(KodeinVectors.KotlinMonogram),
                 contentDescription = null,
                 modifier = Modifier.height(42.5.dp).padding(top = 1.dp, end = 8.dp)
             )
@@ -158,7 +158,7 @@ private val kodeinOpenSource by Slide(
             inlineContent = mapOf(
                 "kotlin" to InlineTextContent(Placeholder(0.8.em, 0.8.em, PlaceholderVerticalAlign.Center)) {
                     Image(
-                        painter = rememberVectorPainter(KodeinVectorImages.Logo.KotlinMonogram),
+                        painter = rememberVectorPainter(KodeinVectors.KotlinMonogram),
                         contentDescription = "Kotlin",
                         modifier = Modifier.fillMaxSize()
                     )
@@ -191,8 +191,8 @@ private val kodeinOpenSource by Slide(
                 Surface(
                     tonalElevation = 8.dp,
                     shadowElevation = 8.dp,
-                    color = Color(KodeinColors.light),
-                    contentColor = Color(KodeinColors.dark),
+                    color = Color(KodeinColors.orange100),
+                    contentColor = Color(KodeinColors.purple600),
                     shape = RoundedCornerShape(topStart = 8.dp, bottomEnd = 8.dp),
                     modifier = Modifier
                         .width(82.dp)

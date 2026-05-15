@@ -34,7 +34,7 @@ public fun KodeinSourceCode(
         if (file != null) {
             Text(
                 text = file,
-                color = Color(KodeinColors.purple_light),
+                color = Color(KodeinColors.purple100),
                 style = mergedStyle
             )
         }

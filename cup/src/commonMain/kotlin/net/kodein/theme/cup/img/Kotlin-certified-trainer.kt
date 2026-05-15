@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
-import net.kodein.theme.compose.KodeinVectorImages
+import net.kodein.theme.compose.drawable.KodeinVectors
 
 
 private val imageVector by lazy {
@@ -987,4 +987,4 @@ private val imageVector by lazy {
     }.build()
 }
 
-public val KodeinVectorImages.Logo.KotlinCertifiedTrainer: ImageVector get() = imageVector
+public val KodeinVectors.KotlinCertifiedTrainer: ImageVector get() = imageVector

@@ -13,10 +13,10 @@ public abstract class ValueHolder<Self : ValueHolder<Self, Value>, Value> {
     }
     protected operator fun Value.getValue(self: Self, property: KProperty<*>): Value = this
 
-    public operator fun get(name: String): Value = byName.getValue(name)
+    public operator fun get(name: String): Value? = byName[name]
 
-    public fun nameOf(value: Value): String = byValue.getValue(value)
+    public fun nameOf(value: Value): String? = byValue[value]
 
     @Suppress("UNCHECKED_CAST")
-    public inline fun nameOf(value: Self.() -> Value): String = nameOf(value.invoke(this as Self))
+    public inline fun nameOf(value: Self.() -> Value): String? = nameOf(value.invoke(this as Self))
 }

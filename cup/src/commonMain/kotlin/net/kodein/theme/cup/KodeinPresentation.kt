@@ -26,8 +26,8 @@ import net.kodein.cup.laser.laser
 import net.kodein.cup.speaker.speakerWindow
 import net.kodein.theme.KodeinColors
 import net.kodein.theme.compose.Color
-import net.kodein.theme.compose.KodeinVectorImages
-import net.kodein.theme.compose.img.KodeinMonogram
+import net.kodein.theme.compose.drawable.KodeinVectors
+import net.kodein.theme.compose.drawable.Monogram
 import org.kodein.emoji.compose.EmojiService
 
 
@@ -51,7 +51,7 @@ private fun BoxScope.ProgressBar(presentationState: PresentationState) {
                 .fillMaxHeight()
                 .fillMaxWidth(fraction = fraction)
                 .align(Alignment.CenterStart)
-                .background(Color(KodeinColors.dark_purple))
+                .background(Color(KodeinColors.purple800))
         )
     }
 }
@@ -77,10 +77,10 @@ public fun KodeinPresentation(
             backgroundColor = MaterialTheme.colorScheme.background
         ) { slidesContent ->
             Image(
-                painter = rememberVectorPainter(KodeinVectorImages.Logo.KodeinMonogram),
+                painter = rememberVectorPainter(KodeinVectors.Monogram),
                 contentDescription = null,
                 alignment = Alignment.CenterEnd,
-                colorFilter = ColorFilter.tint(Color(KodeinColors.dark_purple)),
+                colorFilter = ColorFilter.tint(Color(KodeinColors.purple800)),
                 modifier = Modifier
                     .alpha(0.5f)
                     .fillMaxSize()

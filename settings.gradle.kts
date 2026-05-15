@@ -23,6 +23,7 @@ include(
     ":base:resources:base-resources-svg",
     ":asciidoctor-resources",
     ":compose",
+    ":compose:demo",
     ":cup"
 )
 

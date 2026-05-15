@@ -22,15 +22,15 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import net.kodein.theme.KodeinColors
 import net.kodein.theme.compose.Color
-import net.kodein.theme.compose.KodeinVectorImages
-import net.kodein.theme.compose.img.KodeinMonogram
+import net.kodein.theme.compose.drawable.KodeinVectors
+import net.kodein.theme.compose.drawable.Monogram
 import net.kodein.theme.cup.kStyled
 
 @Composable
 public fun KodeinLogo(
     division: String,
     modifier: Modifier = Modifier,
-    color: Color = Color(KodeinColors.orange),
+    color: Color = Color(KodeinColors.orange600),
     url: String = "https://kodein.net",
     subtext: @Composable () -> Unit
 ) {
@@ -47,7 +47,7 @@ public fun KodeinLogo(
     ) {
         if (height == 0.dp) return@Row
         Image(
-            painter = rememberVectorPainter(KodeinVectorImages.Logo.KodeinMonogram),
+            painter = rememberVectorPainter(KodeinVectors.Monogram),
             contentDescription = null,
             colorFilter = ColorFilter.tint(color),
             modifier = Modifier.fillMaxHeight().padding(end = height * 0.1f)
