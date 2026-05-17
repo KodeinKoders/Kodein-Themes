@@ -153,7 +153,7 @@ private fun DemoCardContent(
                         .size(32.dp)
                 ) {
                     Row {
-                        Text(type[0].toString(), style = MaterialTheme.typography.titleMedium)
+                        Text(type[0].toString(), style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onPrimaryContainer)
                     }
                 }
             }
@@ -186,8 +186,8 @@ private fun DemoCardContent(
             ) {
                 Text("$type Card", style = MaterialTheme.typography.headlineSmall)
                 Badge(
-                    containerColor = MaterialTheme.colorScheme.secondary,
-                    contentColor = MaterialTheme.colorScheme.onSecondary,
+                    containerColor = MaterialTheme.colorScheme.tertiary,
+                    contentColor = MaterialTheme.colorScheme.onTertiary,
                     modifier = Modifier.padding(start = 8.dp),
                 ) {
                     Icon(
@@ -312,7 +312,7 @@ private fun DemoFormContent(
     Text(
         text = type,
         style = MaterialTheme.typography.labelMedium,
-        modifier = Modifier.padding(top = 4.dp, start = 8.dp)
+        modifier = Modifier.padding(top = 4.dp, start = 16.dp)
     )
 
     var enabled by remember { mutableStateOf(true) }

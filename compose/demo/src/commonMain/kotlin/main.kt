@@ -1,4 +1,5 @@
 import androidx.compose.foundation.VerticalScrollbar
+import androidx.compose.foundation.defaultScrollbarStyle
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ExperimentalGridApi
@@ -65,7 +66,7 @@ enum class Page(
 @OptIn(ExperimentalGridApi::class, ExperimentalMaterial3ExpressiveApi::class)
 fun main() = singleWindowApplication(
     title = "Kodein Material Theme",
-    state = WindowState(width = 1080.dp, height = 760.dp),
+    state = WindowState(width = 1200.dp, height = 760.dp),
 ) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     var isKodein by remember { mutableStateOf(true) }
@@ -97,6 +98,7 @@ fun main() = singleWindowApplication(
                     }
                 }
             },
+            gesturesEnabled = drawerState.isOpen,
             drawerState = drawerState,
         ) {
             val hostState = remember { SnackbarHostState() }
@@ -161,6 +163,10 @@ fun main() = singleWindowApplication(
                     }
                     VerticalScrollbar(
                         adapter = rememberScrollbarAdapter(scrollState),
+                        style = defaultScrollbarStyle().copy(
+                            unhoverColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f),
+                            hoverColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                        ),
                         modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight(),
                     )
                 }

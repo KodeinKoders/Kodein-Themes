@@ -38,9 +38,9 @@ fun Colors(
         config = {
             gap(4.dp)
 
-            column(size = 256.dp)
-            column(size = 256.dp)
-            column(size = 256.dp)
+            column(size = 288.dp)
+            column(size = 288.dp)
+            column(size = 288.dp)
             column(size = 4.dp)
             column(size = 256.dp)
 
@@ -143,7 +143,7 @@ fun Colors(
                 onColor = colors.inverseOnSurface,
                 modifier = Modifier.fillMaxWidth()
             )
-            ProvideTextStyle(TextStyle(color = colors.primary)) {
+            ProvideTextStyle(TextStyle(color = colors.onPrimaryContainer)) {
                 ColorDisplay(
                     name = "Inverse Primary",
                     color = colors.inversePrimary,
