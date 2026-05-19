@@ -7,7 +7,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
@@ -45,7 +44,7 @@ public fun KodeinSourceCode(
             theme = KodeinSourceCodeTheme,
             debug = if (debug) SourceCodeDebugColors() else null,
             modifier = Modifier
-                .background(Color.DarkGray, RoundedCornerShape(4.dp))
+                .background(Color(KodeinColors.purple600), RoundedCornerShape(16.dp))
                 .padding(8.dp)
         )
     }

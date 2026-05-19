@@ -2,7 +2,6 @@ package net.kodein.theme.cup.slides
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.EnterExitState
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandHorizontally
@@ -15,6 +14,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,13 +23,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalDensity
@@ -48,28 +51,32 @@ import net.kodein.cup.Slides
 import net.kodein.cup.TransitionSet
 import net.kodein.cup.insideTransitionSpecs
 import net.kodein.cup.plus
+import net.kodein.cup.utils.slideContextOf
 import net.kodein.theme.KodeinColors
 import net.kodein.theme.compose.Color
+import net.kodein.theme.compose.KodeinLogo
 import net.kodein.theme.compose.LCTPicon
-import net.kodein.theme.compose.drawable.KodeinVectors
+import net.kodein.theme.compose.Link
+import net.kodein.theme.cup.KodeinBackgroundLogo
 import net.kodein.theme.cup.KodeinPresentationBackground
-import net.kodein.theme.cup.img.KotlinMonogram
+import net.kodein.theme.cup.drawable.Jetbrains
+import net.kodein.theme.cup.drawable.KodeinCupVectors
+import net.kodein.theme.cup.drawable.Kotlin
 import net.kodein.theme.cup.kStyled
-import net.kodein.theme.cup.ui.KodeinLogo
 
 
 @Composable
 private fun KotlinDivision(
     modifier: Modifier = Modifier,
-    subtext: @Composable () -> Unit = {},
+    subtext: @Composable RowScope.() -> Unit = {},
     division: @Composable () -> Unit,
 ) {
     Column(modifier) {
         Row {
             Image(
-                painter = rememberVectorPainter(KodeinVectors.KotlinMonogram),
+                painter = rememberVectorPainter(KodeinCupVectors.Kotlin),
                 contentDescription = null,
-                modifier = Modifier.height(42.5.dp).padding(top = 1.dp, end = 8.dp)
+                modifier = Modifier.height(50.dp).padding(top = 4.dp, end = 8.dp)
             )
             Column {
                 ProvideTextStyle(
@@ -80,12 +87,12 @@ private fun KotlinDivision(
                 ) {
                     Text(
                         text = "Kotlin",
-                        fontWeight = FontWeight.Light
+                        fontWeight = FontWeight.Normal
                     )
                     ProvideTextStyle(
                         TextStyle(
-                            fontWeight = FontWeight.Medium,
-                            fontFamily = LCTPicon.Condensed
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = LCTPicon.Regular,
                         )
                     ) {
                         division()
@@ -99,17 +106,24 @@ private fun KotlinDivision(
                 fontWeight = FontWeight.Light
             )
         ) {
-            subtext()
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                subtext()
+            }
         }
     }
 }
 
 
-@OptIn(ExperimentalAnimationApi::class)
 private val kodeinKoders by Slide(
+    context = KodeinBackgroundLogo(alpha = 1f, bigVisible = true),
     stepCount = 3
 ) { step ->
-    KodeinLogo("Koders") { Text("painless mobile technology") }
+    Link("https://kodein.net") {
+        KodeinLogo(
+            division = "Koders",
+            mainFontSize = 32.sp,
+        ) { Text("Kotlin Multiplatform Experts") }
+    }
     AnimatedVisibility(
         visible = step >= 1,
         enter = fadeIn(tween(750)) + expandVertically(tween(750)),
@@ -131,40 +145,56 @@ private val kodeinKoders by Slide(
                 }
                 Row {
                     KotlinDivision(Modifier.graphicsLayer(translationX = t)) { Text("Consulting") }
-                    Spacer(Modifier.width(32.dp))
+                    Spacer(Modifier.width(24.dp))
                     KotlinDivision(Modifier.graphicsLayer(translationX = t / 2f)) { Text("Development") }
-                    Spacer(Modifier.width(32.dp))
+                    Spacer(Modifier.width(24.dp))
                 }
             }
             KotlinDivision(
-                subtext = { Text("Jetbrains Certified") }
+                subtext = {
+                    Image(
+                        painter = rememberVectorPainter(KodeinCupVectors.Jetbrains),
+                        contentDescription = null,
+                        colorFilter = ColorFilter.tint(LocalContentColor.current),
+                        modifier = Modifier.padding(end = 8.dp).height(16.dp)
+                    )
+                    Text("Jetbrains Certified")
+                }
             ) { Text("Training") }
         }
     }
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 private val kodeinOpenSource by Slide(
-    context = KodeinPresentationBackground(Color(0xFF_46AF6D)),
+    context = slideContextOf(
+        KodeinPresentationBackground(
+            color = Color(0xFF_46AF6D),
+            progressColor = Color(0xFF398E59),
+        ),
+        KodeinBackgroundLogo(alpha = 1f, bigVisible = true)
+    ),
     stepCount = 2
 ) { step ->
-    KodeinLogo(
-        division = "OpenSource",
-        color = Color.White,
-        url = "https://kodein.org"
-    ) {
-        Text(
-            text = kStyled { "painless ${IC("kotlin")} multiplatform" },
-            inlineContent = mapOf(
-                "kotlin" to InlineTextContent(Placeholder(0.8.em, 0.8.em, PlaceholderVerticalAlign.Center)) {
-                    Image(
-                        painter = rememberVectorPainter(KodeinVectors.KotlinMonogram),
-                        contentDescription = "Kotlin",
-                        modifier = Modifier.fillMaxSize()
-                    )
-                }
+    Link("https://kodein.org") {
+        KodeinLogo(
+            division = "OpenSource",
+            mainFontSize = 32.sp,
+            logoColor = Color.White,
+            textColor = Color.White,
+        ) {
+            Text(
+                text = kStyled { "Community ${IC("kotlin")} Multiplatform" },
+                inlineContent = mapOf(
+                    "kotlin" to InlineTextContent(Placeholder(0.8.em, 0.8.em, PlaceholderVerticalAlign.Center)) {
+                        Image(
+                            painter = rememberVectorPainter(KodeinCupVectors.Kotlin),
+                            contentDescription = "Kotlin",
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+                )
             )
-        )
+        }
     }
 
     AnimatedVisibility(
@@ -193,7 +223,7 @@ private val kodeinOpenSource by Slide(
                     shadowElevation = 8.dp,
                     color = Color(KodeinColors.orange100),
                     contentColor = Color(KodeinColors.purple600),
-                    shape = RoundedCornerShape(topStart = 8.dp, bottomEnd = 8.dp),
+                    shape = RoundedCornerShape(16.dp),
                     modifier = Modifier
                         .width(82.dp)
                         .graphicsLayer(

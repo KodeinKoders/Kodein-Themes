@@ -9,8 +9,10 @@ import androidx.compose.material3.Shapes
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import net.kodein.theme.KodeinColors
 
 
@@ -135,25 +137,99 @@ public object KodeinMaterial {
         onTertiaryFixedVariant = Color(KodeinColors.purple600),
     )
 
-    public val typography: Typography @Composable get() = Typography().let { default ->
+    public val typography: Typography @Composable get() =
         Typography(
-            displayLarge = default.displayLarge.copy(fontFamily = LCTPicon.Regular, fontWeight = FontWeight.Black),
-            displayMedium = default.displayMedium.copy(fontFamily = LCTPicon.Regular, fontWeight = FontWeight.Black),
-            displaySmall = default.displaySmall.copy(fontFamily = LCTPicon.Regular, fontWeight = FontWeight.Black),
-            headlineLarge = default.headlineLarge.copy(fontFamily = LCTPicon.Regular, fontWeight = FontWeight.Black),
-            headlineMedium = default.headlineMedium.copy(fontFamily = LCTPicon.Regular, fontWeight = FontWeight.Black),
-            headlineSmall = default.headlineSmall.copy(fontFamily = LCTPicon.Regular, fontWeight = FontWeight.Black),
-            titleLarge = default.titleLarge.copy(fontFamily = LCTPicon.Regular, fontWeight = FontWeight.Black),
-            titleMedium = default.titleMedium.copy(fontFamily = LCTPicon.Regular, fontWeight = FontWeight.Black),
-            titleSmall = default.titleSmall.copy(fontFamily = LCTPicon.Regular, fontWeight = FontWeight.Black),
-            bodyLarge = default.bodyLarge.copy(fontFamily = LCTPicon.Regular),
-            bodyMedium = default.bodyMedium.copy(fontFamily = LCTPicon.Regular),
-            bodySmall = default.bodySmall.copy(fontFamily = LCTPicon.Regular),
-            labelLarge = default.labelLarge.copy(fontFamily = LCTPicon.Regular),
-            labelMedium = default.labelMedium.copy(fontFamily = LCTPicon.Regular),
-            labelSmall = default.labelSmall.copy(fontFamily = LCTPicon.Regular),
+            displayLarge = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Black,
+                fontSize = 57.sp,
+                lineHeight = 57.sp * .45f,
+            ),
+            displayMedium = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Black,
+                fontSize = 45.sp,
+                lineHeight = 45.sp * .42f,
+            ),
+            displaySmall = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Black,
+                fontSize = 36.sp,
+                lineHeight = 36.sp * .39f,
+            ),
+            headlineLarge = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Black,
+                fontSize = 32.sp,
+                lineHeight = 32.sp * .36f,
+            ),
+            headlineMedium = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Black,
+                fontSize = 28.sp,
+                lineHeight = 28.sp * .33f,
+            ),
+            headlineSmall = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Black,
+                fontSize = 24.sp,
+                lineHeight = 24.sp * .30f,
+            ),
+            titleLarge = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Black,
+                fontSize = 22.sp,
+                lineHeight = 22.sp * .27f,
+            ),
+            titleMedium = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Black,
+                fontSize = 16.sp,
+                lineHeight = 16.sp * .24f,
+            ),
+            titleSmall = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Black,
+                fontSize = 14.sp,
+                lineHeight = 14.sp * .21f,
+            ),
+            bodyLarge = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Normal,
+                fontSize = 16.sp,
+                lineHeight = 24.sp,
+            ),
+            bodyMedium = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Normal,
+                fontSize = 14.sp,
+                lineHeight = 20.sp,
+            ),
+            bodySmall = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Normal,
+                fontSize = 12.sp,
+                lineHeight = 16.sp,
+            ),
+            labelLarge = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Normal,
+                fontSize = 14.sp,
+                lineHeight = 20.sp,
+            ),
+            labelMedium = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Normal,
+                fontSize = 12.sp,
+                lineHeight = 16.sp,
+            ),
+            labelSmall = TextStyle(
+                fontFamily = LCTPicon.Regular,
+                fontWeight = FontWeight.Normal,
+                fontSize = 11.sp,
+                lineHeight = 16.sp,
+            ),
         )
-    }
 
     public val shapes: Shapes = Shapes(
         extraSmall = RoundedCornerShape(8.dp),

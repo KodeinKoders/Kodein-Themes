@@ -7,6 +7,7 @@ import net.kodein.cup.utils.SlideContextElement
 
 public data class KodeinPresentationBackground(
     val color: Color,
+    val progressColor: Color = Color.Unspecified,
 ) : SlideContextElement<KodeinPresentationBackground>(Key) {
     public companion object Key : SlideContext.Key<KodeinPresentationBackground>
 }

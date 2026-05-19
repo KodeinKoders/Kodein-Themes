@@ -24,7 +24,8 @@ include(
     ":asciidoctor-resources",
     ":compose",
     ":compose:demo",
-    ":cup"
+    ":cup",
+    ":cup:demo",
 )
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

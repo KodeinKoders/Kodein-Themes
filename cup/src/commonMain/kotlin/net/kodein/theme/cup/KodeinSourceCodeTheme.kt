@@ -1,17 +1,18 @@
 package net.kodein.theme.cup
 
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import net.kodein.cup.sa.SourceCodeTheme
+import net.kodein.theme.KodeinColors
+import net.kodein.theme.compose.Color
 
 
 public val KodeinSourceCodeTheme: SourceCodeTheme = { cls ->
     when (cls) {
         "default"
         -> SpanStyle(
-            color = Color(0xFF_F7E1DE)
+            color = Color(KodeinColors.orange100)
         )
 
         "code",
@@ -29,7 +30,7 @@ public val KodeinSourceCodeTheme: SourceCodeTheme = { cls ->
         "addition",
         "title",
         -> SpanStyle(
-            color = Color(0xFF_F0A698)
+            color = Color(KodeinColors.orange300)
         )
 
         "keyword",
@@ -39,7 +40,7 @@ public val KodeinSourceCodeTheme: SourceCodeTheme = { cls ->
         "name",
         "variable",
         -> SpanStyle(
-            color = Color(0xFF_EC755B)
+            color = Color(KodeinColors.orange600)
         )
 
         "bullet",
@@ -50,25 +51,25 @@ public val KodeinSourceCodeTheme: SourceCodeTheme = { cls ->
         "literal",
         "string",
         -> SpanStyle(
-            color = Color(0xFF_D39AB8)
+            color = Color(KodeinColors.purple200)
         )
 
         "comment",
         "deletion",
         "meta",
         -> SpanStyle(
-            color = Color(0xFF_B35C9D)
+            color = Color(KodeinColors.purple400)
         )
 
         "strong",
         -> SpanStyle(
-            color = Color(0xFF_F0A698),
+            color = Color(KodeinColors.orange300),
             fontWeight = FontWeight.Bold
         )
 
         "emphasis",
         -> SpanStyle(
-            color = Color(0xFF_F0A698),
+            color = Color(KodeinColors.orange300),
             fontStyle = FontStyle.Italic
         )
 
