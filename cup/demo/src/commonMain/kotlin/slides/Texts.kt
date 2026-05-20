@@ -5,7 +5,7 @@ import androidx.compose.material3.Text
 import net.kodein.cup.Slide
 
 
-val Texts by Slide {
+val texts by Slide {
 
     Text("Title of the slide", style = MaterialTheme.typography.displayMedium)
 

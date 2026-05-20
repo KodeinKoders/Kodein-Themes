@@ -50,6 +50,7 @@ import net.kodein.cup.utils.SlideContext
 import net.kodein.cup.utils.SlideContextElement
 import net.kodein.theme.KodeinColors
 import net.kodein.theme.compose.Color
+import net.kodein.theme.compose.KodeinMaterial
 import net.kodein.themes.cup.generated.resources.Res
 import net.kodein.themes.cup.generated.resources.pres_bg_logo
 import org.jetbrains.compose.resources.imageResource
@@ -103,19 +104,19 @@ public fun KodeinPresentation(
         EmojiService.initialize()
     }
 
-    KodeinCupMaterialTheme {
-        Presentation(
-            slides = slides,
-            configuration = {
-                windowManagement()
-                laser()
-                speakerWindow()
-                imageExport()
-                keyEvents()
-                additionalConfiguration()
-            },
-            backgroundColor = MaterialTheme.colorScheme.background
-        ) { slidesContent ->
+    Presentation(
+        slides = slides,
+        configuration = {
+            windowManagement()
+            laser()
+            speakerWindow()
+            imageExport()
+            keyEvents()
+            additionalConfiguration()
+        },
+        backgroundColor = KodeinMaterial.darkColorScheme.background
+    ) { slidesContent ->
+        KodeinCupMaterialTheme {
             val backgroundLogo = LocalPresentationState.current.currentSlide.context[KodeinBackgroundLogo.Key] ?: KodeinBackgroundLogo()
 
             val imageAlpha by animateFloatAsState(backgroundLogo.alpha, animationSpec = tween(1200))

@@ -2,9 +2,9 @@ import net.kodein.cup.Slides
 import net.kodein.cup.cupApplication
 import net.kodein.theme.cup.KodeinPresentation
 import net.kodein.theme.cup.slides.kodeinActivities
-import slides.SourceCode
-import slides.Texts
 import slides.intro
+import slides.sourceCode
+import slides.texts
 
 
 fun main() = cupApplication(
@@ -13,8 +13,8 @@ fun main() = cupApplication(
     KodeinPresentation(
         slides = Slides(
             intro,
-            Texts,
-            SourceCode,
+            texts,
+            sourceCode,
             kodeinActivities,
         ),
     )

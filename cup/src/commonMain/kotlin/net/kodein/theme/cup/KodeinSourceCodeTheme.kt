@@ -2,6 +2,7 @@ package net.kodein.theme.cup
 
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontSynthesis
 import androidx.compose.ui.text.font.FontWeight
 import net.kodein.cup.sa.SourceCodeTheme
 import net.kodein.theme.KodeinColors
@@ -10,7 +11,9 @@ import net.kodein.theme.compose.Color
 
 public val KodeinSourceCodeTheme: SourceCodeTheme = { cls ->
     when (cls) {
-        "default"
+        "default",
+        "class",
+        "params",
         -> SpanStyle(
             color = Color(KodeinColors.orange100)
         )
@@ -29,6 +32,7 @@ public val KodeinSourceCodeTheme: SourceCodeTheme = { cls ->
         "template-variable",
         "addition",
         "title",
+        "function",
         -> SpanStyle(
             color = Color(KodeinColors.orange300)
         )
@@ -70,7 +74,8 @@ public val KodeinSourceCodeTheme: SourceCodeTheme = { cls ->
         "emphasis",
         -> SpanStyle(
             color = Color(KodeinColors.orange300),
-            fontStyle = FontStyle.Italic
+            fontStyle = FontStyle.Italic,
+            fontSynthesis = FontSynthesis.Style,
         )
 
         else -> null

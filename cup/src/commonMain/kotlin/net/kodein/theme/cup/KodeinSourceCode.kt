@@ -12,7 +12,8 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.kodein.cup.sa.SourceCode
-import net.kodein.cup.sa.SourceCodeDebugColors
+import net.kodein.cup.sa.SourceCodeBlockDebugColors
+import net.kodein.cup.sa.SourceCodeThemeDebugColors
 import net.kodein.theme.KodeinColors
 import net.kodein.theme.compose.Color
 import net.kodein.theme.compose.JetBrainsMono
@@ -26,7 +27,9 @@ public fun KodeinSourceCode(
     file: String? = null,
     fontSize: TextUnit = TextUnit.Unspecified,
     style: TextStyle = TextStyle(),
-    debug: Boolean = false
+    debugBlocks: SourceCodeBlockDebugColors? = null,
+    printMissingThemeClasses: Boolean = false,
+    debugTheme: SourceCodeThemeDebugColors? = null,
 ) {
     val mergedStyle = TextStyle(fontFamily = JetBrainsMono, fontSize = 12.sp) + style + TextStyle(fontSize = fontSize)
     Column(modifier) {
@@ -42,7 +45,9 @@ public fun KodeinSourceCode(
             step = step,
             style = mergedStyle,
             theme = KodeinSourceCodeTheme,
-            debug = if (debug) SourceCodeDebugColors() else null,
+            debugBlocks = debugBlocks,
+            printMissingThemeClasses = printMissingThemeClasses,
+            debugTheme = debugTheme,
             modifier = Modifier
                 .background(Color(KodeinColors.purple600), RoundedCornerShape(16.dp))
                 .padding(8.dp)
