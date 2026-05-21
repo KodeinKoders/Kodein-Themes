@@ -23,9 +23,9 @@ include(
     ":base:resources:base-resources-svg",
     ":asciidoctor-resources",
     ":compose",
-    ":compose:demo",
+    ":compose:demo-compose",
     ":cup",
-    ":cup:demo",
+    ":cup:demo-cup",
 )
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

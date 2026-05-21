@@ -8,11 +8,8 @@ allprojects {
 }
 
 subprojects {
-    apply {
-        plugin("maven-publish")
-    }
-    configure<PublishingExtension> {
-        repositories {
+    afterEvaluate {
+        extensions.findByType<PublishingExtension>()?.repositories {
             maven {
                 name = "GitHubPackages"
                 url = uri("https://maven.pkg.github.com/kodeinkoders/kodein-themes")

@@ -20,3 +20,6 @@ local.properties
 
 # JS
 node_modules/
+
+# CUP
+.cup/
