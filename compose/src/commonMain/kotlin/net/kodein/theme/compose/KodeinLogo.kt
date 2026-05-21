@@ -136,7 +136,7 @@ public fun KodeinLogo(
                 modifier = Modifier
                     .padding(
                         start = logoWidth + spaceWith - with(density) { (fontSize.toPx() * 0.04f).toDp() },
-                        top = secondTextTop - with(density) { (fontSize.toPx() * 0.04f).toDp() },
+                        top = secondTextTop,
                     )
             ) {
                 ProvideTextStyle(

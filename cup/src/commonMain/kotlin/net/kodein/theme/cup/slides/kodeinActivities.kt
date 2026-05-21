@@ -29,12 +29,17 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
@@ -50,7 +55,11 @@ import net.kodein.cup.SlideSpecs
 import net.kodein.cup.Slides
 import net.kodein.cup.TransitionSet
 import net.kodein.cup.insideTransitionSpecs
+import net.kodein.cup.isShiftPressed
+import net.kodein.cup.key
+import net.kodein.cup.keyevents.CupKeyEventEffect
 import net.kodein.cup.plus
+import net.kodein.cup.type
 import net.kodein.cup.utils.slideContextOf
 import net.kodein.theme.KodeinColors
 import net.kodein.theme.compose.Color
@@ -118,10 +127,19 @@ private val kodeinKoders by Slide(
     context = KodeinBackgroundLogo(alpha = 1f, bigVisible = true),
     stepCount = 3
 ) { step ->
+    var showLines by remember { mutableStateOf(false) }
+    CupKeyEventEffect {
+        if (it.type == KeyEventType.KeyDown && it.key == Key.R && it.isShiftPressed) {
+            showLines = !showLines
+            true
+        } else false
+    }
+
     Link("https://kodein.net") {
         KodeinLogo(
             division = "Koders",
             mainFontSize = 32.sp,
+            showDesignLines = showLines,
         ) { Text("Kotlin Multiplatform Experts") }
     }
     AnimatedVisibility(
@@ -175,21 +193,29 @@ private val kodeinOpenSource by Slide(
     ),
     stepCount = 2
 ) { step ->
+    var showLines by remember { mutableStateOf(false) }
+    CupKeyEventEffect {
+        if (it.type == KeyEventType.KeyDown && it.key == Key.R && it.isShiftPressed) {
+            showLines = !showLines
+            true
+        } else false
+    }
     Link("https://kodein.org") {
         KodeinLogo(
             division = "OpenSource",
             mainFontSize = 32.sp,
             logoColor = Color.White,
             textColor = Color.White,
+            showDesignLines = showLines,
         ) {
             Text(
                 text = kStyled { "Community ${IC("kotlin")} Multiplatform" },
                 inlineContent = mapOf(
-                    "kotlin" to InlineTextContent(Placeholder(0.8.em, 0.8.em, PlaceholderVerticalAlign.Center)) {
+                    "kotlin" to InlineTextContent(Placeholder(0.9.em, 0.9.em, PlaceholderVerticalAlign.Center)) {
                         Image(
                             painter = rememberVectorPainter(KodeinCupVectors.Kotlin),
                             contentDescription = "Kotlin",
-                            modifier = Modifier.fillMaxSize()
+                            modifier = Modifier.fillMaxSize().padding(bottom = 4.dp)
                         )
                     }
                 )
