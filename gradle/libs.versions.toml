@@ -1,6 +1,6 @@
 [versions]
 compose = "1.11.0"                      # https://github.com/JetBrains/compose-multiplatform/releases
-cup = "1.0.0-Beta-16"                   # https://github.com/KodeinKoders/CuP/releases
+cup = "1.0.0-Beta-17"                   # https://github.com/KodeinKoders/CuP/releases
 emoji = "2.4.0"                         # https://github.com/kosi-libs/Emoji.kt/releases
 kotlin = "2.3.21"                       # https://github.com/jetbrains/kotlin/releases
 material3 = "1.11.0-alpha07"            # https://github.com/JetBrains/compose-multiplatform/releases
@@ -22,10 +22,11 @@ compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.re
 cup = { module = "net.kodein.cup:cup", version.ref = "cup" }
 cup-widgets-material3 = { module = "net.kodein.cup:cup-widgets-material3", version.ref = "cup" }
 cup-sourceCode = { module = "net.kodein.cup:cup-widgets-source-code", version.ref = "cup" }
+cup-plugin-imageExport = { module = "net.kodein.cup:cup-plugin-image-export", version.ref = "cup" }
 cup-plugin-key-events = { module = "net.kodein.cup:cup-plugin-key-events", version.ref = "cup" }
 cup-plugin-laser = { module = "net.kodein.cup:cup-plugin-laser", version.ref = "cup" }
+cup-plugin-overview = { module = "net.kodein.cup:cup-plugin-overview", version.ref = "cup" }
 cup-plugin-speakerWindow = { module = "net.kodein.cup:cup-plugin-speaker-window", version.ref = "cup" }
-cup-plugin-imageExport = { module = "net.kodein.cup:cup-plugin-image-export", version.ref = "cup" }
 cup-plugin-window-management = { module = "net.kodein.cup:cup-plugin-window-management", version.ref = "cup" }
 emoji-compose = { module = "org.kodein.emoji:emoji-compose-m2", version.ref = "emoji" }
 
@@ -41,9 +42,10 @@ cup = [
     "cup",
     "cup-widgets-material3",
     "cup-sourceCode",
+    "cup-plugin-imageExport",
     "cup-plugin-key-events",
     "cup-plugin-laser",
+    "cup-plugin-overview",
     "cup-plugin-speakerWindow",
-    "cup-plugin-imageExport",
     "cup-plugin-window-management",
 ]
