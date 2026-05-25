@@ -3,6 +3,7 @@ import net.kodein.cup.cupApplication
 import net.kodein.theme.cup.KodeinPresentation
 import net.kodein.theme.cup.slides.kodeinActivities
 import slides.intro
+import slides.outro
 import slides.sourceCode
 import slides.texts
 
@@ -16,6 +17,7 @@ fun main() = cupApplication(
             texts,
             sourceCode,
             kodeinActivities,
+            outro,
         ),
     )
 }

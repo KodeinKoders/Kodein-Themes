@@ -28,6 +28,7 @@ kotlin {
             implementation(libs.bundles.compose)
             implementation(libs.bundles.cup)
             implementation(libs.emoji.compose)
+            implementation(libs.qrose)
 
             api(projects.compose)
         }

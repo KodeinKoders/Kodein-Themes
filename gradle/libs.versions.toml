@@ -5,6 +5,7 @@ emoji = "2.4.0"                         # https://github.com/kosi-libs/Emoji.kt/
 kotlin = "2.3.21"                       # https://github.com/jetbrains/kotlin/releases
 material3 = "1.11.0-alpha07"            # https://github.com/JetBrains/compose-multiplatform/releases
 materialIcons = "1.7.3"                 # https://github.com/JetBrains/compose-multiplatform/releases
+qrose = "1.1.2"                         # https://github.com/alexzhirkevich/qrose/releases
 resourceFiles = "1.0.0"                 # https://github.com/KodeinKoders/gradle-resource-files/releases
 
 [plugins]
@@ -29,6 +30,7 @@ cup-plugin-overview = { module = "net.kodein.cup:cup-plugin-overview", version.r
 cup-plugin-speakerWindow = { module = "net.kodein.cup:cup-plugin-speaker-window", version.ref = "cup" }
 cup-plugin-window-management = { module = "net.kodein.cup:cup-plugin-window-management", version.ref = "cup" }
 emoji-compose = { module = "org.kodein.emoji:emoji-compose-m2", version.ref = "emoji" }
+qrose = { module = "io.github.alexzhirkevich:qrose", version.ref = "qrose" }
 
 [bundles]
 compose = [
