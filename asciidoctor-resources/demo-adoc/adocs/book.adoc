@@ -5,18 +5,6 @@
 :toclevels: 5
 
 
-NOTE: Note
-
-TIP: Tip
-
-IMPORTANT: Important
-
-CAUTION: Caution
-
-WARNING: Warning
-
-
-
 == Section
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.

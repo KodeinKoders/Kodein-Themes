@@ -27,7 +27,6 @@ import javax.inject.Inject
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
-
 abstract class AsciidoctorTask : DefaultTask() {
 
     @get:InputDirectory @get:Incremental
@@ -35,9 +34,6 @@ abstract class AsciidoctorTask : DefaultTask() {
 
     @get:OutputDirectory
     abstract val outputDir: DirectoryProperty
-
-    @get:Input @get:Optional
-    abstract val requires: ListProperty<String>
 
     @get:Input @get:Optional
     abstract val backend: Property<String>
@@ -53,7 +49,6 @@ abstract class AsciidoctorTask : DefaultTask() {
     }
 
     internal interface AdocWorkParameters : WorkParameters {
-        val adocId: Property<String>
         val name: Property<String>
         val inputFile: RegularFileProperty
         val outputFile: RegularFileProperty
@@ -62,7 +57,7 @@ abstract class AsciidoctorTask : DefaultTask() {
     }
 
     companion object {
-        internal val adocs = HashMap<String, Asciidoctor>()
+        val adoc = Asciidoctor.Factory.create()
     }
 
     internal abstract class AdocWorkAction : WorkAction<AdocWorkParameters> {
@@ -70,7 +65,6 @@ abstract class AsciidoctorTask : DefaultTask() {
         val logger: Logger = Logging.getLogger("AdocWorkAction")
 
         override fun execute() {
-            val adoc = adocs[parameters.adocId.get()]!!
             logger.info("Adoc(${parameters.backend.get()}): ${parameters.name.get()}")
             val output = parameters.outputFile.get().asFile
             output.parentFile.mkdirs()
@@ -98,36 +92,23 @@ abstract class AsciidoctorTask : DefaultTask() {
     @OptIn(ExperimentalUuidApi::class)
     @TaskAction
     fun execute(inputChanges: InputChanges) {
-        val id = Uuid.random().toHexString()
-        val adoc = Asciidoctor.Factory.create()
-        adocs[id] = adoc
-        try {
-            requires.get().forEach { lib ->
-                adoc.requireLibrary(lib)
-            }
-            val workQueue = workerExecutor.noIsolation()
-            inputChanges.getFileChanges(inputDir)
-                .filter { it.file.isFile && it.file.extension  == "adoc" }
-                .forEach {
-                    val relativeInputFile = it.file.relativeTo(inputDir.get().asFile)
-                    workQueue.submit(AdocWorkAction::class) {
-                        adocId.set(id)
-                        name.set(relativeInputFile.path)
-                        inputFile.set(it.file)
-                        if (relativeInputFile.parentFile != null) {
-                            outputFile.set(outputDir.get().asFile.resolve(relativeInputFile.parentFile.resolve(it.file.nameWithoutExtension + "." + this@AsciidoctorTask.backend.get())))
-                        } else {
-                            outputFile.set(outputDir.get().asFile.resolve(it.file.nameWithoutExtension + "." + this@AsciidoctorTask.backend.get()))
-                        }
-                        backend.set(this@AsciidoctorTask.backend.get())
-                        attrs.set(this@AsciidoctorTask.attrs.get())
+        val workQueue = workerExecutor.noIsolation()
+        inputChanges.getFileChanges(inputDir)
+            .filter { it.file.isFile && it.file.extension  == "adoc" }
+            .forEach {
+                val relativeInputFile = it.file.relativeTo(inputDir.get().asFile)
+                workQueue.submit(AdocWorkAction::class) {
+                    name.set(relativeInputFile.path)
+                    inputFile.set(it.file)
+                    if (relativeInputFile.parentFile != null) {
+                        outputFile.set(outputDir.get().asFile.resolve(relativeInputFile.parentFile.resolve(it.file.nameWithoutExtension + "." + this@AsciidoctorTask.backend.get())))
+                    } else {
+                        outputFile.set(outputDir.get().asFile.resolve(it.file.nameWithoutExtension + "." + this@AsciidoctorTask.backend.get()))
                     }
+                    backend.set(this@AsciidoctorTask.backend.get())
+                    attrs.set(this@AsciidoctorTask.attrs.get())
                 }
-            workQueue.await()
-        } finally {
-            adoc.close()
-            adoc.shutdown()
-            adocs.remove(id)
-        }
+            }
+        workQueue.await()
     }
 }

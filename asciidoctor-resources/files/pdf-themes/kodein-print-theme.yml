@@ -107,6 +107,6 @@ table:
   border-color: $brand-purple-600
   border-width: 0.75
   body:
-    stripe_background_color: $brand-purple-100
+    stripe_background_color: $brand-orange-100
   foot:
-    background-color: $brand-purple-050
+    background-color: $brand-orange-050

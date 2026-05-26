@@ -1,0 +1,19 @@
+extends:
+  - ./kodein-print-theme.yml
+  - ./brand-base-theme.yml
+
+page:
+  background-color: $brand-orange-100
+
+example:
+  background-color: $brand-orange-100
+
+sidebar:
+  background-color: $brand-orange-200
+
+table:
+  background-color: $brand-orange-100
+  body:
+    stripe_background_color: $brand-orange-050
+  foot:
+    background-color: $brand-orange-200
