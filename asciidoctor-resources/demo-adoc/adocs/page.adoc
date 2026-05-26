@@ -1,0 +1,60 @@
+= Important document
+:experimental:
+
+This is a demo `asciidoctor document`.
+
+Lorem btn:[ipsum] menu:dolor[sit] amet, consectetur adipiscing elit.
+Aenean venenatis venenatis tellus, non euismod ligula sodales rutrum.
+Nam mollis interdum mauris, in eleifend neque vehicula non.
+Curabitur congue orci nibh, malesuada sagittis augue lacinia at.
+Praesent mollis, elit sed tempus molestie, magna dolor rhoncus mi, in blandit dolor sem vitae quam.
+Vestibulum venenatis id dolor id commodo.
+Donec hendrerit orci vel lectus gravida fringilla.
+Vivamus a semper urna.
+
+WARNING: This is a warning!
+
+.main.kt
+[source,kotlin]
+----
+class Universe {
+    // Recomputes every time!
+    val answer: Int by lazy { computeAnswer(0) }
+    private suspend fun computeAnswer(of: Int): Int {
+        // Hard work computed only once!
+        println("Computing for ${of}...")
+        delay(duration = 2.seconds)
+        return 42
+    }
+}
+----
+
+TIP: Did you know you could do that?
+
+[quote,attribution,citation title and information]
+Quote or excerpt text
+
+.Prompt
+====
+What makes the shape of the moon change every-day?
+====
+
+.Important note
+****
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Aenean venenatis venenatis tellus, non euismod ligula sodales rutrum.
+Nam mollis interdum mauris, in eleifend neque vehicula non.
+Curabitur congue orci nibh, malesuada sagittis augue lacinia at.
+****
+
+[%header%footer,cols=2*,stripes=even]
+|===
+|A1
+|B1
+|A2
+|B2
+|A3
+|B3
+|A4
+|B4
+|===

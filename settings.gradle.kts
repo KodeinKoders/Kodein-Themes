@@ -22,6 +22,7 @@ include(
     ":base:resources:base-resources-font",
     ":base:resources:base-resources-svg",
     ":asciidoctor-resources",
+    ":asciidoctor-resources:demo-adoc",
     ":compose",
     ":compose:demo-compose",
     ":cup",
