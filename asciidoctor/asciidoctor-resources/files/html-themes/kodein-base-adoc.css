@@ -1,0 +1,129 @@
+* {
+    word-spacing: normal !important;
+}
+
+body {
+    font-family: Picon, sans-serif;
+}
+
+#toc,
+#toctitle,
+#header .details,
+#header > h1:first-child + #toc,
+#header > h1:only-child,
+.sect1 + .sect1 {
+    border-width: 0;
+}
+
+h1,
+h2,
+h3,
+#toctitle,
+h4,
+h5,
+h6 {
+    font-family: Picon, sans-serif;
+    font-weight: 900;
+}
+
+.sect1 {
+    padding-bottom: .1em;
+}
+
+h5 {
+    font-size: 1.4375em;
+    font-weight: 600;
+}
+
+h6 {
+    font-size: 1.125em;
+    font-weight: 600;
+}
+
+.colist td:not([class]):first-child {
+    padding: .15em .3em 0 .3em;
+}
+
+.colist td {
+    line-height: 1.3;
+}
+
+pre {
+    border-radius: 16px !important;
+}
+
+b.button::before,
+b.button::after {
+    font-weight: bold;
+}
+
+.menuseq,
+.menuref {
+    font-weight: bold;
+}
+
+.admonitionblock td.content > .title,
+.audioblock > .title,
+.exampleblock > .title,
+.imageblock > .title,
+.listingblock > .title,
+.literalblock > .title,
+.stemblock > .title,
+.openblock > .title,
+.paragraph > .title,
+.quoteblock > .title,
+table.tableblock > .title,
+.verseblock > .title,
+.videoblock > .title,
+.dlist > .title,
+.olist > .title,
+.ulist > .title,
+.qlist > .title,
+.hdlist > .title,
+.subheader {
+    font-family: Picon, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.exampleblock > .content {
+    background-color: transparent;
+    border-radius: 16px;
+    box-shadow: none;
+}
+
+.sidebarblock {
+    border-radius: 16px;
+}
+
+.sidebarblock > .content > .title {
+    font-weight: 900;
+    font-family: Picon, sans-serif;
+    font-size: 1.2em;
+}
+
+#footer {
+    padding: .5em;
+    width: calc(100% - 4em);
+    margin-top: 3em;
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+
+#footer-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 .5em 0 .5em;
+    text-align: right;
+}
+
+#footer-text::before {
+    content: " ";
+    display: block;
+    width: 15em;
+    height: 3em;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

@@ -1,0 +1,77 @@
+page:
+  size: A5
+  margin: [8mm, 10mm, 8mm, 10mm]
+
+base:
+  font-size: 9.8
+
+heading:
+  h1-font-size: 16
+  h2-font-size: 12
+
+lead:
+  font-size: 9.8
+  font-style: ~
+
+code:
+  font-size: 8.5
+  padding: [1.4mm, 2.5mm, 1.4mm, 2.5mm]
+
+block:
+  margin-top: 0
+  margin-bottom: 3.5mm
+
+prose:
+  margin-top: 1mm
+  margin-bottom: 2.5mm
+
+codespan:
+  font-size: 8.5
+
+list:
+  item-spacing: 3
+  indent: 2mm
+
+ulist:
+  marker:
+    font-family: Noto Serif
+    line-height: 1.5
+
+admonition:
+  column-rule-color: ~
+  column-rule-width: 0
+  padding: [0, 0, 0, 0]
+  icon:
+    note:
+      size: 15
+    tip:
+      size: 15
+    warning:
+      size: 15
+    important:
+      size: 15
+    caution:
+      size: 15
+
+caption:
+  font-size: 8.5
+
+conum:
+  font-size: 8.5
+
+footer:
+  height: 15mm
+  padding: ~
+  border_color: ~
+  border_width: ~
+  vertical-align: middle
+  recto:
+    left:
+      content: "Training material, © {year}"
+    right:
+      content: ~
+  verso:
+    left:
+      content: "Training material, © {year}"
+    right:
+      content: ~

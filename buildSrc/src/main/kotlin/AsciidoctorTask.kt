@@ -4,6 +4,7 @@ import org.asciidoctor.Asciidoctor
 import org.asciidoctor.Attributes
 import org.asciidoctor.Options
 import org.asciidoctor.SafeMode
+import org.gradle.api.Action
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.RegularFileProperty
@@ -41,6 +42,9 @@ abstract class AsciidoctorTask : DefaultTask() {
     @get:Input @get:Optional
     abstract val attrs: MapProperty<String, Any>
 
+    @get:Input @get:Optional
+    abstract val requires: ListProperty<String>
+
     init {
         group = "build"
         backend.convention("html")
@@ -57,7 +61,7 @@ abstract class AsciidoctorTask : DefaultTask() {
     }
 
     companion object {
-        val adoc = Asciidoctor.Factory.create()
+        private val adoc = Asciidoctor.Factory.create()
     }
 
     internal abstract class AdocWorkAction : WorkAction<AdocWorkParameters> {
@@ -92,6 +96,9 @@ abstract class AsciidoctorTask : DefaultTask() {
     @OptIn(ExperimentalUuidApi::class)
     @TaskAction
     fun execute(inputChanges: InputChanges) {
+        if (requires.get().isNotEmpty()) {
+            adoc.requireLibraries(requires.get())
+        }
         val workQueue = workerExecutor.noIsolation()
         inputChanges.getFileChanges(inputDir)
             .filter { it.file.isFile && it.file.extension  == "adoc" }

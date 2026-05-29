@@ -1,0 +1,109 @@
+brand:
+  purple-050: '#F7EEF6'
+  purple-100: '#E8C7E3'
+  purple-200: '#D0A0CF'
+  purple-300: '#BE72B3'
+  purple-400: '#9E4994'
+  purple-500: '#7A2A71'
+  purple-600: '#480F40'
+  purple-700: '#360A30'
+  purple-800: '#250821'
+  purple-900: '#11030E'
+  purple-950: '#090108'
+
+  orange-050: '#FEF2EF'
+  orange-100: '#FDDDD6'
+  orange-200: '#FAC0B0'
+  orange-300: '#F0A698'
+  orange-400: '#EC7A5C'
+  orange-500: '#EF5E36'
+  orange-600: '#E84420'
+  orange-700: '#C43417'
+  orange-800: '#9B2510'
+  orange-900: '#6E180A'
+  orange-950: '#4A0E05'
+
+font:
+  catalog:
+    merge: true
+
+    Picon:
+      normal: LCTPicon-Regular-Normal.ttf
+      italic: LCTPicon-Regular-NormalOblique.ttf
+      bold: LCTPicon-Regular-Bold.ttf
+      bold_italic: LCTPicon-Regular-BoldOblique.ttf
+
+    PiconHeavy:
+      normal: LCTPicon-Regular-SemiBold.ttf
+      italic: LCTPicon-Regular-SemiBoldOblique.ttf
+      bold: LCTPicon-Regular-Black.ttf
+      bold_italic: LCTPicon-Regular-BlackOblique.ttf
+
+    JetBrainsMono:
+      normal: JetBrainsMono-Normal.ttf
+      italic: JetBrainsMono-NormalItalic.ttf
+      bold: JetBrainsMono-Bold.ttf
+      bold_italic: JetBrainsMono-BoldItalic.ttf
+
+    MaterialCallouts:
+      normal: Material-Callouts.ttf
+
+base:
+  font-family: Picon
+
+heading:
+  h5-font-size: $base-font-size-large
+  h5-font-style: normal
+  h6-font-size: $base-font-size
+  h6-font-style: normal
+  font-family: PiconHeavy
+  font-style: bold
+
+code:
+  font-family: JetBrainsMono
+  font-size: 10
+  border-radius: 12
+  border-color: transparent
+
+codespan:
+  font-family: JetBrainsMono
+
+title-page:
+  title:
+    font-family: PiconHeavy
+    font-style: bold
+    font-size: floor($base-font-size * 3.8)
+
+footer:
+  pages: +title,+toc
+  height: 16mm
+  padding: [2mm, 0mm, 6mm, 0mm]
+  recto:
+    right:
+      content: '{page-number}'
+  verso:
+    left:
+      content: '{page-number}'
+
+running-content:
+  start-at: title
+
+conum:
+  font-family: MaterialCallouts
+
+caption:
+  font-size: 10
+  font-family: Picon
+  font-style: bold_italic
+
+admonition:
+  column-rule-width: 1
+
+example:
+  border-radius: 12
+
+sidebar:
+  border-radius: 12
+
+table:
+  border-width: 0.75

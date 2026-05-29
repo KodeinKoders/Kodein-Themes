@@ -16,13 +16,12 @@ dependencyResolutionManagement {
     }
 }
 
-
 include(
     ":base",
     ":base:resources:base-resources-font",
     ":base:resources:base-resources-svg",
-    ":asciidoctor-resources",
-    ":asciidoctor-resources:demo-adoc",
+    ":asciidoctor:asciidoctor-resources",
+    ":asciidoctor:asciidoctor-gradle-plugin",
     ":compose",
     ":compose:demo-compose",
     ":cup",

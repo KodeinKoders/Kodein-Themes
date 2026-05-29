@@ -1,0 +1,48 @@
+= _Notion:_  Compose Multiplatform
+
+TIP: Jetpack Compose is android's implementation of the *Declarative UI pattern*.
+
+* A `@Composable` function:
+** Can only be called inside another `@Composable` function or lambda.
+** *Emits* UI by calling other `@Composable` functions.
++
+[source,kotlin]
+----
+@Composable fun ButtonLine(label: String, action: String) {
+    Row {
+        Text(label)
+        Button({ println("Click!") }) { Text(action) }
+    }
+}
+----
+
+* A *recomposition* is when the `Composable` function tree will is re-run. +
+  To prevent code to be then re-run, you can `remember` their computation result.
+
+* A *state* is a variable that, when changed, causes a recomposition.
+
+* Having a *single source of truth* means that *state needs to be provided*. +
+  We say that _States flow downward_ while _events flow upward_.
++
+[source,kotlin]
+----
+// A state is ALWAYS remembered
+var text by remember { mutableStateOf("") }
+TextField(text, onValueChange = { text = it })
+----
+
+* Most compose function take a `Modifier` optional parameter that describes layouting as well as other display parameters.
++
+[source,kotlin]
+----
+@Composable fun SquareBoldText(text: String) {
+    Text(text = text, fontWeight = FontWeight.Bold,
+        modifier = Modifier.border(1.dp, Color.Blue))
+}
+----
+
+* The compose view library provides Material Design composables.
+
+_Official documentations: +
+https://github.com/JetBrains/compose-jb#tutorials +
+  https://developer.android.com/jetpack/compose_

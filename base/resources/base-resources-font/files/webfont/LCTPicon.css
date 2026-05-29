@@ -1,0 +1,485 @@
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-Hairline.ttf) format('ttf'),
+    url(LCTPicon-Condensed-Hairline.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-HairlineOblique.ttf) format('ttf'),
+    url(LCTPicon-Condensed-HairlineOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-UltraLight.ttf) format('ttf'),
+    url(LCTPicon-Condensed-UltraLight.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-UltraLightOblique.ttf) format('ttf'),
+    url(LCTPicon-Condensed-UltraLightOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-Light.ttf) format('ttf'),
+    url(LCTPicon-Condensed-Light.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-LightOblique.ttf) format('ttf'),
+    url(LCTPicon-Condensed-LightOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-Normal.ttf) format('ttf'),
+    url(LCTPicon-Condensed-Normal.woff2) format('woff2');
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-NormalOblique.ttf) format('ttf'),
+    url(LCTPicon-Condensed-NormalOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-Medium.ttf) format('ttf'),
+    url(LCTPicon-Condensed-Medium.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-MediumOblique.ttf) format('ttf'),
+    url(LCTPicon-Condensed-MediumOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-SemiBold.ttf) format('ttf'),
+    url(LCTPicon-Condensed-SemiBold.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-SemiBoldOblique.ttf) format('ttf'),
+    url(LCTPicon-Condensed-SemiBoldOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-Bold.ttf) format('ttf'),
+    url(LCTPicon-Condensed-Bold.woff2) format('woff2');
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-BoldOblique.ttf) format('ttf'),
+    url(LCTPicon-Condensed-BoldOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-ExtraBold.ttf) format('ttf'),
+    url(LCTPicon-Condensed-ExtraBold.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-ExtraBoldOblique.ttf) format('ttf'),
+    url(LCTPicon-Condensed-ExtraBoldOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-Black.ttf) format('ttf'),
+    url(LCTPicon-Condensed-Black.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Condensed';
+    src: url(LCTPicon-Condensed-BlackOblique.ttf) format('ttf'),
+    url(LCTPicon-Condensed-BlackOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-Hairline.ttf) format('ttf'),
+    url(LCTPicon-Regular-Hairline.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-HairlineOblique.ttf) format('ttf'),
+    url(LCTPicon-Regular-HairlineOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-UltraLight.ttf) format('ttf'),
+    url(LCTPicon-Regular-UltraLight.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-UltraLightOblique.ttf) format('ttf'),
+    url(LCTPicon-Regular-UltraLightOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-Light.ttf) format('ttf'),
+    url(LCTPicon-Regular-Light.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-LightOblique.ttf) format('ttf'),
+    url(LCTPicon-Regular-LightOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-Normal.ttf) format('ttf'),
+    url(LCTPicon-Regular-Normal.woff2) format('woff2');
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-NormalOblique.ttf) format('ttf'),
+    url(LCTPicon-Regular-NormalOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-Medium.ttf) format('ttf'),
+    url(LCTPicon-Regular-Medium.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-MediumOblique.ttf) format('ttf'),
+    url(LCTPicon-Regular-MediumOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-SemiBold.ttf) format('ttf'),
+    url(LCTPicon-Regular-SemiBold.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-SemiBoldOblique.ttf) format('ttf'),
+    url(LCTPicon-Regular-SemiBoldOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-Bold.ttf) format('ttf'),
+    url(LCTPicon-Regular-Bold.woff2) format('woff2');
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-BoldOblique.ttf) format('ttf'),
+    url(LCTPicon-Regular-BoldOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-ExtraBold.ttf) format('ttf'),
+    url(LCTPicon-Regular-ExtraBold.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-ExtraBoldOblique.ttf) format('ttf'),
+    url(LCTPicon-Regular-ExtraBoldOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-Black.ttf) format('ttf'),
+    url(LCTPicon-Regular-Black.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon';
+    src: url(LCTPicon-Regular-BlackOblique.ttf) format('ttf'),
+    url(LCTPicon-Regular-BlackOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-Hairline.ttf) format('ttf'),
+    url(LCTPicon-Extended-Hairline.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-HairlineOblique.ttf) format('ttf'),
+    url(LCTPicon-Extended-HairlineOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-UltraLight.ttf) format('ttf'),
+    url(LCTPicon-Extended-UltraLight.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-UltraLightOblique.ttf) format('ttf'),
+    url(LCTPicon-Extended-UltraLightOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-Light.ttf) format('ttf'),
+    url(LCTPicon-Extended-Light.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-LightOblique.ttf) format('ttf'),
+    url(LCTPicon-Extended-LightOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-Normal.ttf) format('ttf'),
+    url(LCTPicon-Extended-Normal.woff2) format('woff2');
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-NormalOblique.ttf) format('ttf'),
+    url(LCTPicon-Extended-NormalOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-Medium.ttf) format('ttf'),
+    url(LCTPicon-Extended-Medium.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-MediumOblique.ttf) format('ttf'),
+    url(LCTPicon-Extended-MediumOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-SemiBold.ttf) format('ttf'),
+    url(LCTPicon-Extended-SemiBold.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-SemiBoldOblique.ttf) format('ttf'),
+    url(LCTPicon-Extended-SemiBoldOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-Bold.ttf) format('ttf'),
+    url(LCTPicon-Extended-Bold.woff2) format('woff2');
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-BoldOblique.ttf) format('ttf'),
+    url(LCTPicon-Extended-BoldOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-ExtraBold.ttf) format('ttf'),
+    url(LCTPicon-Extended-ExtraBold.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-ExtraBoldOblique.ttf) format('ttf'),
+    url(LCTPicon-Extended-ExtraBoldOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-Black.ttf) format('ttf'),
+    url(LCTPicon-Extended-Black.woff2) format('woff2');
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Picon-Extended';
+    src: url(LCTPicon-Extended-BlackOblique.ttf) format('ttf'),
+    url(LCTPicon-Extended-BlackOblique.woff2) format('woff2');
+    font-style: oblique;
+    font-weight: 900;
+    font-display: swap;
+}

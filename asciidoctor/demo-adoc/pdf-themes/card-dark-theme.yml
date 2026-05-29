@@ -1,0 +1,11 @@
+extends:
+  - ../build/resources/pdf-themes/kodein-dark-theme.yml
+  - ./card-base-theme.yml
+
+footer:
+  recto:
+    right:
+      content: "image:{pdf-themes-imagesdir}/logo-dark.svg[Logo, 150]"
+  verso:
+    right:
+      content: "image:{pdf-themes-imagesdir}/logo-dark.svg[Logo, 150]"

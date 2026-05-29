@@ -1,0 +1,174 @@
+/*noinspection CssUnknownTarget*/
+@import "asciidoctor.css";
+
+@import "../font/LCTPicon.css";
+@import "../font/JetBrainsMono.css";
+
+@import "kodein-base-adoc.css";
+@import "kodein-base-colors.css";
+
+body,
+table.tableblock {
+    background: var(--purple-800);
+}
+
+body,
+table tr th,
+table tr td,
+.quoteblock blockquote,
+.quoteblock p,
+table.tableblock,
+th.tableblock,
+td.tableblock {
+    color: var(--orange-100);
+}
+
+a {
+    color: var(--purple-200);
+}
+
+a:hover,
+a:focus {
+    color: var(--purple-400);
+}
+
+#header > h1 {
+    color: var(--orange-600) !important;
+}
+
+#header .details {
+    color: var(--orange-300);
+}
+
+h1,
+h2,
+h3,
+#toctitle,
+h4,
+h5,
+h6 {
+    color: var(--orange-600);
+}
+
+code {
+    color: var(--purple-100) !important;
+    background-color: var(--purple-600) !important;
+}
+
+table.linenotable td.linenos,
+pre.pygments .linenos {
+    color: var(--purple-100);
+    border-right-width: 0;
+}
+
+pre {
+    background-color: var(--purple-600) !important;
+}
+
+b.button {
+    color: var(--orange-300);
+}
+
+b.button::before,
+b.button::after {
+    color: var(--orange-600);
+}
+
+.menuseq,
+.menuref {
+    color: var(--orange-300);
+}
+
+.menuseq b.caret {
+    color: var(--orange-600);
+}
+
+.admonitionblock > table td.content {
+    color: var(--orange-300);
+}
+
+.admonitionblock > table td.content {
+    border-left-color: var(--orange-300);
+}
+
+.admonitionblock td.content > .title,
+.audioblock > .title,
+.exampleblock > .title,
+.imageblock > .title,
+.listingblock > .title,
+.literalblock > .title,
+.stemblock > .title,
+.openblock > .title,
+.paragraph > .title,
+.quoteblock > .title,
+table.tableblock > .title,
+.verseblock > .title,
+.videoblock > .title,
+.dlist > .title,
+.olist > .title,
+.ulist > .title,
+.qlist > .title,
+.hdlist > .title,
+.subheader {
+    color: var(--purple-200);
+}
+
+.quoteblock blockquote::before {
+    color: var(--purple-400);
+}
+
+.quoteblock .attribution,
+.verseblock .attribution,
+.quoteblock .attribution cite,
+.verseblock .attribution cite {
+    color: var(--purple-200);
+}
+
+.exampleblock > .content {
+    border-color: var(--purple-200);
+    color: var(--purple-200);
+}
+
+.sidebarblock {
+    background-color: var(--orange-900);
+    border-color: var(--orange-400);
+    color: var(--orange-200);
+}
+
+.sidebarblock > .content > .title {
+    color: var(--orange-100);
+}
+
+table.tableblock,
+th.tableblock,
+td.tableblock {
+    border-color: var(--purple-200);
+}
+
+table thead {
+    background-color: var(--orange-900);
+}
+
+table tfoot {
+    background-color: var(--orange-950);
+}
+
+table.stripes-all > * > tr,
+table.stripes-odd > * > tr:nth-of-type(odd),
+table.stripes-even > * > tr:nth-of-type(even),
+table.stripes-hover > * > tr:hover {
+    background-color: var(--purple-600);
+}
+
+#footer {
+    background-color: var(--purple-800);
+    border-color: var(--orange-600);
+}
+
+#footer-text {
+    color: var(--orange-300);
+}
+
+#footer-text::before {
+    background-image: url("./logo-dark.svg");
+}

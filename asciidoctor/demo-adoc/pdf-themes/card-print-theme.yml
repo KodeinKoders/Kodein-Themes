@@ -1,0 +1,11 @@
+extends:
+  - ../build/resources/pdf-themes/kodein-print-theme.yml
+  - ./card-base-theme.yml
+
+footer:
+  recto:
+    right:
+      content: "image:{pdf-themes-imagesdir}/logo-light.svg[Logo, 150]"
+  verso:
+    right:
+      content: "image:{pdf-themes-imagesdir}/logo-light.svg[Logo, 150]"

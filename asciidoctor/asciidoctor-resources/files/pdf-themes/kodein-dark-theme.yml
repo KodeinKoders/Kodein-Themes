@@ -1,0 +1,94 @@
+extends:
+  - default
+  - ./kodein-base-theme.yml
+
+base:
+  font-color: $brand-orange-100
+
+page:
+  background-color: $brand-purple-800
+
+toc:
+  font-color: $brand-purple-200
+
+link:
+  font-color: $brand-purple-200
+
+heading:
+  font-color: $brand-orange-600
+
+code:
+  font-color: $brand-purple-100
+  background-color: $brand-purple-600
+
+codespan:
+  background-color: $brand-purple-600
+  font-color: $brand-purple-100
+
+title-page:
+  title:
+    font-color: $brand-orange-600
+  subtitle:
+    font-color: $brand-orange-400
+  authors:
+    font-color: $brand-purple-400
+
+footer:
+  recto:
+    left:
+      content: "image:{pdf-themes-imagesdir}/logo-dark.svg[]"
+  verso:
+    right:
+      content: "image:{pdf-themes-imagesdir}/logo-dark.svg[]"
+
+conum:
+  font-color: $brand-orange-600
+
+caption:
+  font-color: $brand-purple-200
+
+admonition:
+  column-rule-color: $brand-orange-300
+  font-color: $brand-orange-300
+  label:
+    font-color: $brand-orange-500
+
+quote:
+  border-color: $brand-purple-400
+  cite:
+    font-color: $brand-purple-200
+
+verse:
+  border-color: $brand-orange-400
+  cite:
+    font-color: $brand-orange-200
+
+example:
+  border-color: $brand-purple-200
+  background-color: $brand-purple-800
+  font-color: $brand-purple-200
+
+sidebar:
+  background-color: $brand-orange-900
+  border-color: $brand-orange-400
+  font-color: $brand-orange-200
+  title:
+    font-color: $brand-orange-100
+
+table:
+  border-color: $brand-purple-400
+  background-color: $brand-purple-800
+  head:
+    background-color: $brand-orange-900
+  body:
+    stripe_background_color: $brand-purple-600
+  foot:
+    background-color: $brand-orange-950
+
+button:
+  font-color: $brand-orange-300
+  content: "<font size=\"1.15em\" color=\"#$brand-orange-600\">[</font>\u2009%s\u2009<font size=\"1.15em\" color=\"#$brand-orange-600\">]</font>"
+
+menu:
+  font-color: $brand-orange-300
+  caret-content: "\u00a0<font size=\"1.15em\" color=\"#$brand-orange-600\">\u203a</font> "
