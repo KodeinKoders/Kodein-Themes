@@ -15,8 +15,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DarkMode
+import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -36,10 +40,13 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import net.kodein.cup.LocalPresentationState
+import net.kodein.cup.PluginCupAPI
 import net.kodein.cup.Presentation
 import net.kodein.cup.PresentationState
 import net.kodein.cup.SlideGroup
+import net.kodein.cup.config.CupAdditionalOverlay
 import net.kodein.cup.config.CupConfiguration
+import net.kodein.cup.config.CupPlugin
 import net.kodein.cup.currentSlide
 import net.kodein.cup.imgexp.imageExport
 import net.kodein.cup.keyevents.keyEvents
@@ -51,7 +58,6 @@ import net.kodein.cup.utils.SlideContext
 import net.kodein.cup.utils.SlideContextElement
 import net.kodein.theme.KodeinColors
 import net.kodein.theme.compose.Color
-import net.kodein.theme.compose.KodeinMaterial
 import net.kodein.themes.cup.generated.resources.Res
 import net.kodein.themes.cup.generated.resources.pres_bg_logo
 import org.jetbrains.compose.resources.imageResource
@@ -98,12 +104,16 @@ public data class KodeinBackgroundLogo(
 public fun KodeinPresentation(
     slides: SlideGroup,
     additionalConfiguration: CupConfiguration = {},
+    darkTheme: Boolean = true,
+    allowThemeSwitch: Boolean = true,
     decoration: @Composable BoxScope.(@Composable BoxScope.() -> Unit) -> Unit = { it() },
 ) {
     remember {
         // https://github.com/kosi-libs/Emoji.kt?tab=readme-ov-file#initializing-the-emoji-service
         EmojiService.initialize()
     }
+
+    var isDark by remember { mutableStateOf(darkTheme) }
 
     Presentation(
         slides = slides,
@@ -115,10 +125,23 @@ public fun KodeinPresentation(
             imageExport()
             keyEvents()
             overview()
+            if (allowThemeSwitch) {
+                @OptIn(PluginCupAPI::class)
+                plugin(
+                    object : CupPlugin {
+                        override fun overlay(state: PresentationState) = listOf(
+                            CupAdditionalOverlay(
+                                text = "Switch Theme",
+                                onClick = { isDark = !isDark },
+                                icon = if (isDark) Icons.Filled.LightMode else Icons.Default.DarkMode,
+                            )
+                        )
+                    }
+                )
+            }
         },
-        backgroundColor = KodeinMaterial.darkColorScheme.background
     ) { slidesContent ->
-        KodeinCupMaterialTheme {
+        KodeinCupMaterialTheme(isDark) {
             val backgroundLogo = LocalPresentationState.current.currentSlide.context[KodeinBackgroundLogo.Key] ?: KodeinBackgroundLogo()
 
             val imageAlpha by animateFloatAsState(backgroundLogo.alpha, animationSpec = tween(1200))
@@ -144,77 +167,68 @@ public fun KodeinPresentation(
                 ).value
             }
 
-            Image(
-                bitmap = imageResource(Res.drawable.pres_bg_logo),
-                contentDescription = null,
-                alignment = Alignment.CenterStart,
-                contentScale = ContentScale.FillHeight,
-                filterQuality = FilterQuality.High,
-                modifier = Modifier
-                    .align(Alignment.CenterStart)
-                    .onGloballyPositioned {
-                        imageSize = it.size
-                        rootSize = it.findRootCoordinates().size
-                    }
-                    .offset {
-                        if (imageSize == IntSize.Zero || rootSize == IntSize.Zero) {
-                            IntOffset.Zero
-                        } else {
-                            IntOffset(
-                                x = x,
-                                y = y,
-//                                x = rootSize.width - (imageSize.width * .8f).roundToInt(),
-//                                y = (imageSize.height / 3f).roundToInt(),
-//                                x = (rootSize.width / 2f).roundToInt().coerceAtLeast(rootSize.width - (imageSize.width / 1.18f).roundToInt()),
-//                                y = -(imageSize.height / 4.5f).roundToInt(),
-                            )
+            Surface {
+                Image(
+                    bitmap = imageResource(Res.drawable.pres_bg_logo),
+                    contentDescription = null,
+                    alignment = Alignment.CenterStart,
+                    contentScale = ContentScale.FillHeight,
+                    filterQuality = FilterQuality.High,
+                    modifier = Modifier
+                        .align(Alignment.CenterStart)
+                        .onGloballyPositioned {
+                            imageSize = it.size
+                            rootSize = it.findRootCoordinates().size
                         }
-                    }
-                    .graphicsLayer {
-                        rotationZ = -15f
-                        scaleX = scale
-                        scaleY = scale
-//                        scaleX = 1.15f
-//                        scaleY = 1.15f
-//                        scaleX = 2.2f
-//                        scaleY = 2.2f
-                        transformOrigin = TransformOrigin(0f, 0.5f)
-                        alpha = imageAlpha
-                        clip = false
-                    }
-                    .fillMaxHeight()
-            )
+                        .offset {
+                            if (imageSize == IntSize.Zero || rootSize == IntSize.Zero) {
+                                IntOffset.Zero
+                            } else {
+                                IntOffset(x = x, y = y)
+                            }
+                        }
+                        .graphicsLayer {
+                            rotationZ = -15f
+                            scaleX = scale
+                            scaleY = scale
+                            transformOrigin = TransformOrigin(0f, 0.5f)
+                            alpha = imageAlpha * (if (isDark) 1f else .5f)
+                            clip = false
+                        }
+                        .fillMaxHeight()
+                )
 
-            val presentationState = LocalPresentationState.current
-            val presentationBackground = presentationState.currentSlide.context[KodeinPresentationBackground]
-            val overBackground by animateColorAsState(
-                targetValue = presentationBackground?.color ?: Color.Transparent,
-                animationSpec = tween(1_500)
-            )
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(overBackground)
-            ) {
-                decoration {
-                    Box(
-                        modifier = Modifier
-                            .padding(8.dp)
-                    ) {
-                        CompositionLocalProvider(
-                            LocalContentColor provides MaterialTheme.colorScheme.onBackground,
+                val presentationState = LocalPresentationState.current
+                val presentationBackground = presentationState.currentSlide.context[KodeinPresentationBackground]
+                val overBackground by animateColorAsState(
+                    targetValue = presentationBackground?.color ?: Color.Transparent,
+                    animationSpec = tween(1_500)
+                )
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(overBackground)
+                ) {
+                    decoration {
+                        Box(
+                            modifier = Modifier
+                                .padding(8.dp)
                         ) {
-                            slidesContent()
+                            CompositionLocalProvider(
+                                LocalContentColor provides MaterialTheme.colorScheme.onBackground,
+                            ) {
+                                slidesContent()
+                            }
                         }
+                        val progressBackground by animateColorAsState(
+                            targetValue = presentationBackground?.progressColor ?: Color(KodeinColors.purple600),
+                            animationSpec = tween(1_500)
+                        )
+                        ProgressBar(
+                            presentationState = presentationState,
+                            color = progressBackground
+                        )
                     }
-                    val progressBackground by animateColorAsState(
-                        targetValue = presentationBackground?.progressColor ?: Color(KodeinColors.purple600),
-                        animationSpec = tween(1_500)
-                    )
-                    ProgressBar(
-                        presentationState = presentationState,
-                        color = progressBackground
-                    )
                 }
             }
         }

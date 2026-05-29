@@ -42,7 +42,7 @@ module Rouge; module Themes
           Literal,
           Literal::String,
           Literal::String::Backtick,
-          Num,                       { fg: purple400 }
+          Num,                       { fg: purple300 }
 
     style Literal::String::Interpol, { fg: purple800 }
 
@@ -53,7 +53,7 @@ module Rouge; module Themes
           Name::Attribute,
           Name::Builtin,
           Name::Builtin::Pseudo,
-          Name::Tag,                 { fg: purple600, bold: true }
+          Name::Tag,                 { fg: purple500, bold: true }
 
     style Name::Class,               { fg: orange900 }
 

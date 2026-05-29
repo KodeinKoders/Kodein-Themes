@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -139,6 +140,7 @@ private val kodeinKoders by Slide(
         KodeinLogo(
             division = "Koders",
             mainFontSize = 32.sp,
+            textColor = MaterialTheme.colorScheme.onSurface,
             showDesignLines = showLines,
         ) { Text("Kotlin Multiplatform Experts") }
     }

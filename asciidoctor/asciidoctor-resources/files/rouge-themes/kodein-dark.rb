@@ -42,7 +42,7 @@ module Rouge; module Themes
           Literal,
           Literal::String,
           Literal::String::Backtick,
-          Num,                       { fg: purple300 }
+          Num,                       { fg: purple200 }
 
     style Literal::String::Interpol, { fg: purple100 }
 

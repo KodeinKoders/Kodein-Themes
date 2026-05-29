@@ -24,8 +24,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import net.kodein.theme.KodeinColors
-import net.kodein.theme.compose.Color
 import net.kodein.theme.compose.KodeinLogo
 import net.kodein.theme.compose.Link
 
@@ -55,6 +53,7 @@ public fun BracketSlideContent(
                     KodeinLogo(
                         division = "Koders",
                         mainFontSize = 12.sp,
+                        textColor = MaterialTheme.colorScheme.onSurface,
                     ) { Text("Kotlin Multiplatform Experts") }
                 }
                 topLogoAdditions()
@@ -74,7 +73,7 @@ public fun BracketSlideContent(
                 modifier = Modifier
                     .scale(value)
             ) {
-                ProvideTextStyle(MaterialTheme.typography.displayLarge.copy(color = Color(KodeinColors.Accent))) {
+                ProvideTextStyle(MaterialTheme.typography.displayLarge.copy(color = MaterialTheme.colorScheme.onTertiaryFixedVariant)) {
                     title()
                 }
             }
@@ -82,13 +81,13 @@ public fun BracketSlideContent(
             Spacer(Modifier.weight(1f))
 
             if (information != null) {
-                ProvideTextStyle(TextStyle(color = Color(KodeinColors.Normal))) {
+                ProvideTextStyle(TextStyle(color = MaterialTheme.colorScheme.onSurfaceVariant)) {
                     information()
                 }
                 Spacer(Modifier.weight(1f))
             }
 
-            ProvideTextStyle(TextStyle(color = Color(KodeinColors.Normal))) {
+            ProvideTextStyle(TextStyle(color = MaterialTheme.colorScheme.onSurfaceVariant)) {
                 authors()
             }
 

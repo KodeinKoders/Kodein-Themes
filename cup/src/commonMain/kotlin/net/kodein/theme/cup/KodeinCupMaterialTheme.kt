@@ -7,10 +7,11 @@ import net.kodein.theme.compose.KodeinMaterial
 
 @Composable
 public fun KodeinCupMaterialTheme(
+    isDark: Boolean = true,
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colorScheme = KodeinMaterial.darkColorScheme,
+        colorScheme = if (isDark) KodeinMaterial.darkColorScheme else KodeinMaterial.lightColorScheme,
         typography = KodeinMaterial.typography.cupScaleDown(),
         shapes = KodeinMaterial.shapes,
         content = content,

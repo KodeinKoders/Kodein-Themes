@@ -9,13 +9,13 @@ import net.kodein.theme.KodeinColors
 import net.kodein.theme.compose.Color
 
 
-public val KodeinSourceCodeTheme: SourceCodeTheme = { cls ->
+public val KodeinDarkSourceCodeTheme: SourceCodeTheme = { cls ->
     when (cls) {
         "default",
-        "class",
         "params",
         -> SpanStyle(
-            color = Color(KodeinColors.orange100)
+            color = Color(KodeinColors.purple100),
+            fontWeight = FontWeight.Normal,
         )
 
         "code",
@@ -32,9 +32,10 @@ public val KodeinSourceCodeTheme: SourceCodeTheme = { cls ->
         "template-variable",
         "addition",
         "title",
-        "function",
+        "class",
         -> SpanStyle(
-            color = Color(KodeinColors.orange300)
+            color = Color(KodeinColors.orange300),
+            fontWeight = FontWeight.Normal,
         )
 
         "keyword",
@@ -43,8 +44,10 @@ public val KodeinSourceCodeTheme: SourceCodeTheme = { cls ->
         "attribute",
         "name",
         "variable",
+        "function",
         -> SpanStyle(
-            color = Color(KodeinColors.orange600)
+            color = Color(KodeinColors.purple300),
+            fontWeight = FontWeight.Bold,
         )
 
         "bullet",
@@ -55,14 +58,14 @@ public val KodeinSourceCodeTheme: SourceCodeTheme = { cls ->
         "literal",
         "string",
         -> SpanStyle(
-            color = Color(KodeinColors.purple200)
+            color = Color(KodeinColors.purple200),
         )
 
         "comment",
         "deletion",
         "meta",
         -> SpanStyle(
-            color = Color(KodeinColors.purple400)
+            color = Color(KodeinColors.orange600),
         )
 
         "strong",
@@ -74,6 +77,82 @@ public val KodeinSourceCodeTheme: SourceCodeTheme = { cls ->
         "emphasis",
         -> SpanStyle(
             color = Color(KodeinColors.orange300),
+            fontStyle = FontStyle.Italic,
+            fontSynthesis = FontSynthesis.Style,
+        )
+
+        else -> null
+    }
+}
+
+public val KodeinLightSourceCodeTheme: SourceCodeTheme = { cls ->
+    when (cls) {
+        "default",
+        "params",
+            -> SpanStyle(
+            color = Color(KodeinColors.purple800),
+            fontWeight = FontWeight.Normal,
+        )
+
+        "code",
+        "selector-class",
+        "subst",
+        "type",
+        "built_in",
+        "builtin-name",
+        "symbol",
+        "selector-id",
+        "selector-attr",
+        "selector-pseudo",
+        "template-tag",
+        "template-variable",
+        "addition",
+        "title",
+        "class",
+            -> SpanStyle(
+            color = Color(KodeinColors.orange900),
+            fontWeight = FontWeight.Normal,
+        )
+
+        "keyword",
+        "selector-tag",
+        "section",
+        "attribute",
+        "name",
+        "variable",
+        "function",
+            -> SpanStyle(
+            color = Color(KodeinColors.purple500),
+            fontWeight = FontWeight.Bold,
+        )
+
+        "bullet",
+        "quote",
+        "link",
+        "number",
+        "regexp",
+        "literal",
+        "string",
+            -> SpanStyle(
+            color = Color(KodeinColors.purple300),
+        )
+
+        "comment",
+        "deletion",
+        "meta",
+            -> SpanStyle(
+            color = Color(KodeinColors.orange600),
+        )
+
+        "strong",
+            -> SpanStyle(
+            color = Color(KodeinColors.orange900),
+            fontWeight = FontWeight.Bold
+        )
+
+        "emphasis",
+            -> SpanStyle(
+            color = Color(KodeinColors.orange900),
             fontStyle = FontStyle.Italic,
             fontSynthesis = FontSynthesis.Style,
         )
