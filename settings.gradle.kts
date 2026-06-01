@@ -16,6 +16,8 @@ dependencyResolutionManagement {
     }
 }
 
+includeBuild("build-logic")
+
 include(
     ":base",
     ":base:resources:base-resources-font",

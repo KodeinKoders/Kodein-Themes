@@ -1,4 +1,4 @@
 plugins {
     alias(libs.plugins.resourceFiles)
-    `maven-publish`
+    id("publish-convention")
 }

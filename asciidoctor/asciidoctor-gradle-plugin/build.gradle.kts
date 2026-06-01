@@ -1,7 +1,7 @@
 plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
-    `maven-publish`
+    id("publish-convention")
     alias(libs.plugins.buildConfig)
 }
 
