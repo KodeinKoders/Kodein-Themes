@@ -47,11 +47,15 @@ abstract class AsciidoctorTask : DefaultTask() {
     abstract val attrs: MapProperty<String, Any>
 
     @get:Input @get:Optional
+    abstract val attrVariables: MapProperty<String, String>
+
+    @get:Input @get:Optional
     abstract val requires: SetProperty<String>
 
     init {
         outputDir.convention(project.layout.buildDirectory.dir(backend.map { "asciidoctor/$it" }))
         attrs.convention(emptyMap())
+        attrVariables.convention(emptyMap())
         requires.convention(emptySet())
     }
 
@@ -67,6 +71,7 @@ abstract class AsciidoctorTask : DefaultTask() {
         val outputFile: RegularFileProperty
         val backend: Property<String>
         val attrs: MapProperty<String, Any>
+        val attrVariables: MapProperty<String, String>
     }
 
     internal abstract class AdocWorkAction : WorkAction<AdocWorkParameters> {
@@ -87,7 +92,18 @@ abstract class AsciidoctorTask : DefaultTask() {
                     .attributes(
                         Attributes.builder()
                             .apply {
-                                parameters.attrs.get().forEach { (k, v) -> attribute(k, v) }
+                                parameters.attrs.get().forEach { (key, value) ->
+                                    attribute(
+                                        key,
+                                        value.let {
+                                            if (it is String) {
+                                                var str = it as String
+                                                parameters.attrVariables.get().forEach { (k, v) -> str = str.replace("{$k}", v) }
+                                                str
+                                            } else it
+                                        }
+                                    )
+                                }
                             }
                             .build()
                     )
@@ -119,6 +135,12 @@ abstract class AsciidoctorTask : DefaultTask() {
                     }
                     backend.set(this@AsciidoctorTask.backend.get())
                     attrs.set(this@AsciidoctorTask.attrs.get())
+                    attrVariables.putAll(
+                        mapOf(
+                            "relRootOutputDir" to ((outputDir.get().asFile.relativeTo(outputFile.get().asFile.parentFile).path).takeIf { it.isNotBlank() } ?: ".")
+                        )
+                    )
+                    attrVariables.putAll(this@AsciidoctorTask.attrVariables.get())
                 }
             }
         workQueue.await()

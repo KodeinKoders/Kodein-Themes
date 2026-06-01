@@ -175,9 +175,10 @@ abstract class AsciidoctorExtension(val project: Project) {
 
                 attrs {
                     icons("images")
-                    iconsDir("./icons")
+                    iconsDir("{relRootOutputDir}/icons")
                     attribute("icontype", "svg")
                     sourceHighlighter("rouge")
+                    attribute("rouge-css", "style")
                     attribute("rouge-style", "kodein-$baseTheme")
                 }
             }
@@ -190,7 +191,7 @@ abstract class AsciidoctorExtension(val project: Project) {
             task {
                 attrs {
                     linkCss(true)
-                    styleSheetName("css/kodein-$theme.css")
+                    styleSheetName("{relRootOutputDir}/css/kodein-$theme.css")
                     attribute("copyCss", project.layout.buildDirectory.file("resources/html-themes/kodein-$theme.css").get().asFile.absolutePath)
                 }
             }
@@ -206,8 +207,8 @@ abstract class AsciidoctorExtension(val project: Project) {
                 inputs.dir(themesDir)
                 attrs {
                     linkCss(true)
-                    styleSheetName("css/$themeName.css")
-                    attribute("copyCss", themesDir.file("$themeName.css").asFile.absolutePath)
+                    attribute("foo", "barRr")
+                    styleSheetName("{relRootOutputDir}/css/$themeName.css")
                 }
             }
         }

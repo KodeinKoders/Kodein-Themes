@@ -108,6 +108,7 @@ table.tableblock > .title,
     margin-top: 3em;
     border-top-width: 1px;
     border-top-style: solid;
+    max-width: 62.5em;
 }
 
 #footer-text {
