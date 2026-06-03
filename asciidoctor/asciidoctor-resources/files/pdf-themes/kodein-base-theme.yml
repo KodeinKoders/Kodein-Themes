@@ -104,6 +104,9 @@ example:
 
 sidebar:
   border-radius: 12
+  font-size: 1.25em
+  title:
+    font-size: 1.4em
 
 table:
   border-width: 0.75

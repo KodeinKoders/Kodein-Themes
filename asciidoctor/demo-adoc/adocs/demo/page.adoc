@@ -1,16 +1,13 @@
 = Important document
 :experimental:
 
-This is a demo `asciidoctor document`.
+This is a demo asciidoctor document.
 
-Lorem btn:[ipsum] menu:dolor[sit] amet, consectetur adipiscing elit.
+Lorem btn:[ipsum] menu:dolor[sit] amet, `consectetur adipiscing elit`.
 Aenean venenatis venenatis tellus, non euismod ligula sodales rutrum.
 Nam mollis interdum mauris, in eleifend neque vehicula non.
 Curabitur congue orci nibh, malesuada sagittis augue lacinia at.
-Praesent mollis, elit sed tempus molestie, magna dolor rhoncus mi, in blandit dolor sem vitae quam.
-Vestibulum venenatis id dolor id commodo.
 Donec hendrerit orci vel lectus gravida fringilla.
-Vivamus a semper urna.
 
 WARNING: This is a warning!
 
@@ -29,10 +26,12 @@ class Universe {
 <1> Computed only once!
 <2> Represents hard work.
 
-TIP: Did you know you could do that?
-
 [quote,attribution,citation title and information]
 Quote or excerpt text
+
+----
+Lorem ipsum dolorsit amet, consectetur adipiscing elit.
+----
 
 .Prompt
 ====

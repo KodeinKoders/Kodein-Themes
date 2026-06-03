@@ -19,7 +19,9 @@ table tr td,
 .quoteblock p,
 table.tableblock,
 th.tableblock,
-td.tableblock {
+td.tableblock,
+.paragraph.lead > p,
+#preamble > .sectionbody > [class=paragraph]:first-of-type p {
     color: var(--orange-100);
 }
 
@@ -50,19 +52,22 @@ h6 {
     color: var(--orange-600);
 }
 
+pre,
 code {
-    color: var(--purple-100) !important;
     background-color: var(--purple-600) !important;
+}
+
+pre,
+code,
+.listingblock .content {
+    color: var(--purple-100);
+
 }
 
 table.linenotable td.linenos,
 pre.pygments .linenos {
     color: var(--purple-100);
     border-right-width: 0;
-}
-
-pre {
-    background-color: var(--purple-600) !important;
 }
 
 b.button {
