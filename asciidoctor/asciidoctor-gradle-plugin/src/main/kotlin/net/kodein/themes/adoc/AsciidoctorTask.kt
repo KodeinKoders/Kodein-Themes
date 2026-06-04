@@ -121,17 +121,27 @@ abstract class AsciidoctorTask : DefaultTask() {
             AsciidoctorPlugin.adoc.requireLibraries(requires.get())
         }
         val workQueue = workerExecutor.noIsolation()
-        inputChanges.getFileChanges(inputDir)
-            .filter { it.file.isFile && it.file.extension  == "adoc" }
-            .forEach {
-                val relativeInputFile = it.file.relativeTo(inputDir.get().asFile)
+
+        var files = inputChanges.getFileChanges(inputDir)
+            .map { it.file }
+            .filter { it.isFile }
+
+        if (files.any { it.name.startsWith("inc-")}) {
+            files = inputDir.asFileTree.files
+                .filter { it.isFile }
+        }
+
+        files
+            .filter { it.extension == "adoc" && !it.name.startsWith("inc-") }
+            .forEach { file ->
+                val relativeInputFile = file.relativeTo(inputDir.get().asFile)
                 workQueue.submit(AdocWorkAction::class) {
                     name.set(relativeInputFile.path)
-                    inputFile.set(it.file)
+                    inputFile.set(file)
                     if (relativeInputFile.parentFile != null) {
-                        outputFile.set(outputDir.get().asFile.resolve(relativeInputFile.parentFile.resolve(it.file.nameWithoutExtension + "." + this@AsciidoctorTask.backend.get())))
+                        outputFile.set(outputDir.get().asFile.resolve(relativeInputFile.parentFile.resolve(file.nameWithoutExtension + "." + this@AsciidoctorTask.backend.get())))
                     } else {
-                        outputFile.set(outputDir.get().asFile.resolve(it.file.nameWithoutExtension + "." + this@AsciidoctorTask.backend.get()))
+                        outputFile.set(outputDir.get().asFile.resolve(file.nameWithoutExtension + "." + this@AsciidoctorTask.backend.get()))
                     }
                     backend.set(this@AsciidoctorTask.backend.get())
                     attrs.set(this@AsciidoctorTask.attrs.get())

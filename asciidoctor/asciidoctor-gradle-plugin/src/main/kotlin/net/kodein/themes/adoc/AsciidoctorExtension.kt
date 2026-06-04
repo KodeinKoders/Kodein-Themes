@@ -38,19 +38,21 @@ abstract class AsciidoctorExtension(val project: Project) {
     }
     abstract class AsciidoctorTaskBuilder(val task: TaskProvider<AsciidoctorTask>)
 
-    class AsciidoctorPdfTaskBuilder(task: TaskProvider<AsciidoctorTask>) : AsciidoctorTaskBuilder(task) {
+    inner class AsciidoctorPdfTaskBuilder(task: TaskProvider<AsciidoctorTask>) : AsciidoctorTaskBuilder(task) {
         private fun baseTheme(
             baseTheme: String,
+            resourceProject: Project,
         ) {
             task {
-                dependsOn(project.tasks.named("importResourceFiles"))
+                dependsOn(resourceProject.tasks.named("importResourceFiles"))
 
-                val resources = project.layout.buildDirectory.get().dir("resources")
+                val resources = resourceProject.layout.buildDirectory.get().dir("resources")
                 val rougeThemeFile = resources.file("rouge-themes/kodein-$baseTheme.rb")
                 val iconsDir = resources.dir("icons")
                 val pdfThemesDir = resources.dir("pdf-themes")
                 val fontDir = resources.dir("font")
 
+                inputs.dir(resources)
                 inputs.files(rougeThemeFile)
                 inputs.dir(iconsDir)
                 inputs.dir(pdfThemesDir)
@@ -72,11 +74,15 @@ abstract class AsciidoctorExtension(val project: Project) {
 
         fun kodeinTheme(
             theme: String,
+            resourceProject: Project = project,
         ) {
-            baseTheme(theme)
+            baseTheme(
+                baseTheme = theme,
+                resourceProject = resourceProject,
+            )
             task {
                 attrs {
-                    attribute("pdf-themesdir", project.layout.buildDirectory.dir("resources/pdf-themes").get().asFile.absolutePath)
+                    attribute("pdf-themesdir", resourceProject.layout.buildDirectory.dir("resources/pdf-themes").get().asFile.absolutePath)
                     attribute("pdf-theme", "kodein-$theme")
                 }
             }
@@ -85,9 +91,13 @@ abstract class AsciidoctorExtension(val project: Project) {
         fun customTheme(
             baseTheme: String,
             themesDir: Directory,
-            themeName: String
+            themeName: String,
+            resourceProject: Project = project,
         ) {
-            baseTheme(baseTheme)
+            baseTheme(
+                baseTheme = baseTheme,
+                resourceProject = resourceProject,
+            )
             task {
                 inputs.dir(themesDir)
                 attrs {
@@ -104,16 +114,16 @@ abstract class AsciidoctorExtension(val project: Project) {
         private fun baseTheme(
             baseTheme: String,
             customThemeDir: Directory?,
+            resourceProject: Project,
         ) {
-            project.tasks.named("importResourceFiles")
             if (!::extractCss.isInitialized) {
                 extractCss = project.tasks.register<AsciidoctorExtractCssTask>("extractCss") {
-                    dependsOn(project.tasks.named("importResourceFiles"))
+                    dependsOn(resourceProject.tasks.named("importResourceFiles"))
                 }
             }
             val copyResources = project.tasks.register("copy${task.name.replaceFirstChar { it.titlecase() }}Resources") {
                 dependsOn(extractCss)
-                val resources = project.layout.buildDirectory.dir("resources").get()
+                val resources = resourceProject.layout.buildDirectory.dir("resources").get()
                 val cssDir = task.get().outputDir.dir("css").get()
                 val fontDir = task.get().outputDir.dir("font").get()
                 val iconsDir = task.get().outputDir.dir("icons").get()
@@ -166,7 +176,7 @@ abstract class AsciidoctorExtension(val project: Project) {
             }
             task {
                 dependsOn(copyResources)
-                val resources = project.layout.buildDirectory.get().dir("resources")
+                val resources = resourceProject.layout.buildDirectory.get().dir("resources")
                 val rougeThemeFile = resources.file("rouge-themes/kodein-$baseTheme.rb")
 
                 inputs.files(rougeThemeFile)
@@ -186,13 +196,18 @@ abstract class AsciidoctorExtension(val project: Project) {
 
         fun kodeinTheme(
             theme: String,
+            resourceProject: Project = project,
         ) {
-            baseTheme(theme, null)
+            baseTheme(
+                baseTheme = theme,
+                customThemeDir = null,
+                resourceProject = resourceProject,
+            )
             task {
                 attrs {
                     linkCss(true)
                     styleSheetName("{relRootOutputDir}/css/kodein-$theme.css")
-                    attribute("copyCss", project.layout.buildDirectory.file("resources/html-themes/kodein-$theme.css").get().asFile.absolutePath)
+                    attribute("copyCss", resourceProject.layout.buildDirectory.file("resources/html-themes/kodein-$theme.css").get().asFile.absolutePath)
                 }
             }
         }
@@ -200,9 +215,14 @@ abstract class AsciidoctorExtension(val project: Project) {
         fun customTheme(
             baseTheme: String,
             themesDir: Directory,
-            themeName: String
+            themeName: String,
+            resourceProject : Project = project,
         ) {
-            baseTheme(baseTheme, themesDir)
+            baseTheme(
+                baseTheme = baseTheme,
+                customThemeDir = themesDir,
+                resourceProject = resourceProject
+            )
             task {
                 inputs.dir(themesDir)
                 attrs {
@@ -217,11 +237,11 @@ abstract class AsciidoctorExtension(val project: Project) {
     fun pdf(
         name: String,
         configuration: AsciidoctorPdfTaskBuilder.() -> Unit,
-    ) = AsciidoctorPdfTaskBuilder(register(name, "pdf")).configuration()
+    ) = AsciidoctorPdfTaskBuilder(register(name, "pdf")).apply(configuration).task
 
     fun html(
         name: String,
         configuration: AsciidoctorHtmlTaskBuilder.() -> Unit,
-    ) = AsciidoctorHtmlTaskBuilder(register(name, "html")).configuration()
+    ) = AsciidoctorHtmlTaskBuilder(register(name, "html")).apply(configuration).task
 
 }
