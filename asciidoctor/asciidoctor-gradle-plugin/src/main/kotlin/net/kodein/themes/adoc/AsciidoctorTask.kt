@@ -53,7 +53,6 @@ abstract class AsciidoctorTask : DefaultTask() {
     abstract val requires: SetProperty<String>
 
     init {
-        outputDir.convention(project.layout.buildDirectory.dir(backend.map { "asciidoctor/$it" }))
         attrs.convention(emptyMap())
         attrVariables.convention(emptyMap())
         requires.convention(emptySet())

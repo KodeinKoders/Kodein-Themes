@@ -20,7 +20,7 @@ class AsciidoctorPlugin : Plugin<Project> {
         target.dependencies {
             "resourceFiles"("net.kodein.themes:asciidoctor-resources:${BuildConfig.VERSION}")
         }
-        target.extensions.create<AsciidoctorExtension>("kodeinThemesAdoc", target)
+        target.extensions.create<AsciidoctorExtension>("asciidoctor", target)
     }
 
 }

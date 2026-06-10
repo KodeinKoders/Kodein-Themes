@@ -30,18 +30,21 @@ font:
     Picon:
       normal: LCTPicon-Regular-Normal.ttf
       italic: LCTPicon-Regular-NormalOblique.ttf
+      normal_italic: LCTPicon-Regular-NormalOblique.ttf
       bold: LCTPicon-Regular-Bold.ttf
       bold_italic: LCTPicon-Regular-BoldOblique.ttf
 
     PiconHeavy:
       normal: LCTPicon-Regular-SemiBold.ttf
       italic: LCTPicon-Regular-SemiBoldOblique.ttf
+      normal_italic: LCTPicon-Regular-SemiBoldOblique.ttf
       bold: LCTPicon-Regular-Black.ttf
       bold_italic: LCTPicon-Regular-BlackOblique.ttf
 
     JetBrainsMono:
       normal: JetBrainsMono-Normal.ttf
       italic: JetBrainsMono-NormalItalic.ttf
+      normal_italic: JetBrainsMono-NormalItalic.ttf
       bold: JetBrainsMono-Bold.ttf
       bold_italic: JetBrainsMono-BoldItalic.ttf
 

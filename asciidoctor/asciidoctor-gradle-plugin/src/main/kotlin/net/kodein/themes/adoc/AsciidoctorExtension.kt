@@ -3,17 +3,59 @@ package net.kodein.themes.adoc
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.file.Directory
+import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.invoke
 import org.gradle.kotlin.dsl.register
 
 abstract class AsciidoctorExtension(val project: Project) {
 
+    val commonResources: TaskProvider<Copy> = project.tasks.register<Copy>(
+        name = "copyCommonAsciidoctorResources",
+    )
+
+    inner class AsciidoctorDirectory(
+        val name: String,
+        val directory: Directory,
+    ) {
+        val adocResources = project.tasks.register("copy${name.capitalize()}Resources") {
+            dependsOn(commonResources)
+        }
+
+        private val _backends = ArrayList<AsciidoctorBackend>()
+        val backends: List<AsciidoctorBackend> get() = _backends
+
+        fun pdf(
+            configuration: AsciidoctorPdf.() -> Unit = {},
+        ) = AsciidoctorPdf(register(name, directory, "pdf"))
+            .apply(configuration)
+            .apply { backendResources.configure { dependsOn(adocResources) } }
+            .also { _backends.add(it) }
+
+        fun html(
+            configuration: AsciidoctorHtml.() -> Unit = {},
+        ) = AsciidoctorHtml(register(name, directory, "html"))
+            .apply(configuration)
+            .apply { backendResources.configure { dependsOn(adocResources) } }
+            .also { _backends.add(it) }
+    }
+
+    private val _directories = ArrayList<AsciidoctorDirectory>()
+    val directories: List<AsciidoctorDirectory> get() = _directories
+
+    fun directory(
+        directory: Directory,
+        name: String = directory.asFile.name,
+        configuration: AsciidoctorDirectory.() -> Unit = {},
+    ) = AsciidoctorDirectory(name, directory)
+        .apply(configuration)
+        .also { _directories.add(it) }
+
     private var groupTasks = HashMap<String, TaskProvider<Task>>()
 
     private fun addToGroup(group: String, task: TaskProvider<*>) {
         val groupTask = groupTasks.getOrPut(group) {
-            project.tasks.register<Task>("asciidoctor${group.replaceFirstChar { it.titlecase() }}") {
+            project.tasks.register<Task>("asciidoctor${group.capitalize()}") {
                 this.group = "asciidoctor"
             }
         }
@@ -22,13 +64,16 @@ abstract class AsciidoctorExtension(val project: Project) {
 
     private fun register(
         name: String,
+        directory: Directory,
         backendName: String,
     ): TaskProvider<AsciidoctorTask> {
         val task = project.tasks.register<AsciidoctorTask>(
-            name = "asciidoctor${name.replaceFirstChar { it.titlecase() }}${backendName.replaceFirstChar { it.titlecase() }}",
+            name = "asciidoctor${name.capitalize()}${backendName.capitalize()}",
         ) {
             group = "asciidoctor"
             backend.set(backendName)
+            inputDir.set(directory)
+            outputDir.set(project.layout.buildDirectory.dir("asciidoctor/${name}/${backendName}"))
         }
 
         addToGroup("all", task)
@@ -36,14 +81,21 @@ abstract class AsciidoctorExtension(val project: Project) {
 
         return task
     }
-    abstract class AsciidoctorTaskBuilder(val task: TaskProvider<AsciidoctorTask>)
 
-    inner class AsciidoctorPdfTaskBuilder(task: TaskProvider<AsciidoctorTask>) : AsciidoctorTaskBuilder(task) {
+    abstract inner class AsciidoctorBackend(
+        val backend: TaskProvider<AsciidoctorTask>,
+    ) {
+        val backendResources: TaskProvider<Copy> = project.tasks.register<Copy>(
+            name = "copy${backend.name.capitalize()}Resources",
+        ).also { backend { dependsOn(it) } }
+    }
+
+    inner class AsciidoctorPdf(asciidoctor: TaskProvider<AsciidoctorTask>) : AsciidoctorBackend(asciidoctor) {
         private fun baseTheme(
             baseTheme: String,
             resourceProject: Project,
         ) {
-            task {
+            backend {
                 dependsOn(resourceProject.tasks.named("importResourceFiles"))
 
                 val resources = resourceProject.layout.buildDirectory.get().dir("resources")
@@ -80,7 +132,7 @@ abstract class AsciidoctorExtension(val project: Project) {
                 baseTheme = theme,
                 resourceProject = resourceProject,
             )
-            task {
+            backend {
                 attrs {
                     attribute("pdf-themesdir", resourceProject.layout.buildDirectory.dir("resources/pdf-themes").get().asFile.absolutePath)
                     attribute("pdf-theme", "kodein-$theme")
@@ -98,7 +150,7 @@ abstract class AsciidoctorExtension(val project: Project) {
                 baseTheme = baseTheme,
                 resourceProject = resourceProject,
             )
-            task {
+            backend {
                 inputs.dir(themesDir)
                 attrs {
                     attribute("pdf-themesdir", themesDir.asFile.absolutePath)
@@ -110,7 +162,9 @@ abstract class AsciidoctorExtension(val project: Project) {
 
     internal lateinit var extractCss: TaskProvider<AsciidoctorExtractCssTask>
 
-    inner class AsciidoctorHtmlTaskBuilder(task: TaskProvider<AsciidoctorTask>) : AsciidoctorTaskBuilder(task) {
+    inner class AsciidoctorHtml(
+        task: TaskProvider<AsciidoctorTask>,
+    ) : AsciidoctorBackend(task) {
         private fun baseTheme(
             baseTheme: String,
             customThemeDir: Directory?,
@@ -121,61 +175,40 @@ abstract class AsciidoctorExtension(val project: Project) {
                     dependsOn(resourceProject.tasks.named("importResourceFiles"))
                 }
             }
-            val copyResources = project.tasks.register("copy${task.name.replaceFirstChar { it.titlecase() }}Resources") {
+
+            backendResources {
                 dependsOn(extractCss)
-                val resources = resourceProject.layout.buildDirectory.dir("resources").get()
-                val cssDir = task.get().outputDir.dir("css").get()
-                val fontDir = task.get().outputDir.dir("font").get()
-                val iconsDir = task.get().outputDir.dir("icons").get()
+                val resources = resourceProject.layout.buildDirectory.dir("resources")
 
-                inputs.dir(resources)
-                if (customThemeDir != null) { inputs.dir(customThemeDir) }
-                outputs.dirs(cssDir, fontDir, iconsDir)
+                into(backend.map { it.outputDir.get() })
 
-                doLast {
-                    project.copy {
-                        from(extractCss)
-                        into(cssDir)
-                    }
-                    project.copy {
-                        from(resources.file("html-themes/kodein-$baseTheme.css"))
-                        into(cssDir)
-                    }
-                    project.copy {
-                        from(resources.file("html-themes/images/logo-$baseTheme.svg"))
-                        into(cssDir)
-                    }
-                    project.copy {
-                        from(resources.dir("html-themes"))
+                into("css") {
+                    from(extractCss)
+                    from(resources.map { it.file("html-themes/kodein-$baseTheme.css") })
+                    from(resources.map { it.file("html-themes/images/logo-$baseTheme.svg") })
+                    from(resources.map { it.dir("html-themes") }) {
                         include { it.name.startsWith("kodein-base-") }
-                        into(cssDir)
                     }
                     if (customThemeDir != null) {
-                        project.copy {
-                            from(customThemeDir)
-                            into(cssDir)
-                        }
+                        from(customThemeDir)
                     }
-                    project.copy {
-                        from(resources.dir("font"))
-                        into(fontDir)
+                }
+                into("font") {
+                    from(resources.map { it.dir("font") }) {
                         include {
                             (it.name.startsWith("JetBrainsMono-") || it.name.startsWith("LCTPicon-"))
                                     && ("withCallouts" !in it.name)
                         }
                     }
-                    project.copy {
-                        from(resources.dir("webfont"))
-                        into(fontDir)
-                    }
-                    project.copy {
-                        from(resources.dir("icons"))
-                        into(iconsDir)
-                    }
+                    from(resources.map { it.dir("webfont") })
+                }
+                into("icons") {
+                    from(resources.map { it.dir("icons") })
                 }
             }
-            task {
-                dependsOn(copyResources)
+
+            backend {
+                dependsOn(backendResources)
                 val resources = resourceProject.layout.buildDirectory.get().dir("resources")
                 val rougeThemeFile = resources.file("rouge-themes/kodein-$baseTheme.rb")
 
@@ -203,7 +236,7 @@ abstract class AsciidoctorExtension(val project: Project) {
                 customThemeDir = null,
                 resourceProject = resourceProject,
             )
-            task {
+            backend {
                 attrs {
                     linkCss(true)
                     styleSheetName("{relRootOutputDir}/css/kodein-$theme.css")
@@ -223,7 +256,7 @@ abstract class AsciidoctorExtension(val project: Project) {
                 customThemeDir = themesDir,
                 resourceProject = resourceProject
             )
-            task {
+            backend {
                 inputs.dir(themesDir)
                 attrs {
                     linkCss(true)
@@ -233,15 +266,4 @@ abstract class AsciidoctorExtension(val project: Project) {
             }
         }
     }
-
-    fun pdf(
-        name: String,
-        configuration: AsciidoctorPdfTaskBuilder.() -> Unit,
-    ) = AsciidoctorPdfTaskBuilder(register(name, "pdf")).apply(configuration).task
-
-    fun html(
-        name: String,
-        configuration: AsciidoctorHtmlTaskBuilder.() -> Unit,
-    ) = AsciidoctorHtmlTaskBuilder(register(name, "html")).apply(configuration).task
-
 }

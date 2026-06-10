@@ -23,6 +23,9 @@ kotlin {
         useCommonJs()
     }
 
+    iosArm64()
+    iosSimulatorArm64()
+
     sourceSets {
         commonMain.dependencies {
             implementation(libs.bundles.compose)
