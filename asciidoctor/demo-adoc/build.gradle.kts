@@ -47,8 +47,8 @@ asciidoctor {
                     }
                 }
             }
-            backends.forEach {
-                it.backend {
+            backends.all {
+                backend {
                     attrs {
                         attribute("year", Calendar.getInstance().get(Calendar.YEAR))
                     }

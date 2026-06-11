@@ -1,55 +1,97 @@
 package net.kodein.themes.adoc
 
+import org.gradle.api.Named
+import org.gradle.api.PolymorphicDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.file.Directory
+import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.TaskProvider
+import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.invoke
 import org.gradle.kotlin.dsl.register
 
 abstract class AsciidoctorExtension(val project: Project) {
 
-    val commonResources: TaskProvider<Copy> = project.tasks.register<Copy>(
+    val commonResources = project.tasks.register<Copy>(
         name = "copyCommonAsciidoctorResources",
-    )
-
-    inner class AsciidoctorDirectory(
-        val name: String,
-        val directory: Directory,
     ) {
-        val adocResources = project.tasks.register("copy${name.capitalize()}Resources") {
-            dependsOn(commonResources)
-        }
-
-        private val _backends = ArrayList<AsciidoctorBackend>()
-        val backends: List<AsciidoctorBackend> get() = _backends
-
-        fun pdf(
-            configuration: AsciidoctorPdf.() -> Unit = {},
-        ) = AsciidoctorPdf(register(name, directory, "pdf"))
-            .apply(configuration)
-            .apply { backendResources.configure { dependsOn(adocResources) } }
-            .also { _backends.add(it) }
-
-        fun html(
-            configuration: AsciidoctorHtml.() -> Unit = {},
-        ) = AsciidoctorHtml(register(name, directory, "html"))
-            .apply(configuration)
-            .apply { backendResources.configure { dependsOn(adocResources) } }
-            .also { _backends.add(it) }
+        into(project.layout.buildDirectory.dir("resources"))
     }
 
-    private val _directories = ArrayList<AsciidoctorDirectory>()
-    val directories: List<AsciidoctorDirectory> get() = _directories
+    inner class AsciidoctorDirectory(
+        private val name: String,
+    ): Named {
+        override fun getName(): String = name
+
+        val directoryResources = project.tasks.register<Copy>("copy${name.capitalize()}Resources") {
+            into(project.layout.buildDirectory.dir("resources"))
+        }
+
+        val directory = project.objects.directoryProperty()
+
+        val backends: PolymorphicDomainObjectContainer<AsciidoctorBackend> =
+            project.objects.polymorphicDomainObjectContainer(AsciidoctorBackend::class.java).apply {
+                registerFactory(AsciidoctorPdf::class.java) {
+                    AsciidoctorPdf(
+                        name = it,
+                        backend = registerBackend(
+                            name = it,
+                            directory = directory,
+                            directoryName = name,
+                            backendName = "pdf",
+                        )
+                    )
+                }
+                registerFactory(AsciidoctorHtml::class.java) {
+                    AsciidoctorHtml(
+                        name = it,
+                        backend = registerBackend(
+                            name = it,
+                            directory = directory,
+                            directoryName = name,
+                            backendName = it,
+                        )
+                    )
+                }
+            }
+
+        fun pdf(
+            name: String = "pdf",
+            configuration: AsciidoctorPdf.() -> Unit = {},
+        ) = backends.create<AsciidoctorPdf>(name) {
+            configuration()
+            backendResources.configure { dependsOn(directoryResources) }
+        }
+
+        fun html(
+            name: String = "html",
+            configuration: AsciidoctorHtml.() -> Unit = {},
+        ) = backends.create<AsciidoctorHtml>(name) {
+            configuration()
+            backendResources.configure { dependsOn(directoryResources) }
+        }
+    }
+
+    val directories = project.objects.domainObjectContainer(AsciidoctorDirectory::class.java) {
+        AsciidoctorDirectory(
+            name = it,
+        )
+    }.apply {
+        whenObjectAdded {
+            directoryResources.configure { dependsOn(commonResources) }
+        }
+    }
 
     fun directory(
         directory: Directory,
         name: String = directory.asFile.name,
         configuration: AsciidoctorDirectory.() -> Unit = {},
-    ) = AsciidoctorDirectory(name, directory)
-        .apply(configuration)
-        .also { _directories.add(it) }
+    ) = directories.create(name) {
+        this.directory.set(directory)
+        configuration()
+    }
 
     private var groupTasks = HashMap<String, TaskProvider<Task>>()
 
@@ -62,18 +104,19 @@ abstract class AsciidoctorExtension(val project: Project) {
         groupTask.configure { dependsOn(task) }
     }
 
-    private fun register(
+    private fun registerBackend(
         name: String,
-        directory: Directory,
+        directoryName: String,
+        directory: DirectoryProperty,
         backendName: String,
     ): TaskProvider<AsciidoctorTask> {
         val task = project.tasks.register<AsciidoctorTask>(
-            name = "asciidoctor${name.capitalize()}${backendName.capitalize()}",
+            name = "asciidoctor${directoryName.capitalize()}${name.capitalize()}",
         ) {
             group = "asciidoctor"
             backend.set(backendName)
             inputDir.set(directory)
-            outputDir.set(project.layout.buildDirectory.dir("asciidoctor/${name}/${backendName}"))
+            outputDir.set(project.layout.buildDirectory.dir("asciidoctor/${directoryName}/${name}"))
         }
 
         addToGroup("all", task)
@@ -83,14 +126,20 @@ abstract class AsciidoctorExtension(val project: Project) {
     }
 
     abstract inner class AsciidoctorBackend(
+        private val name: String,
         val backend: TaskProvider<AsciidoctorTask>,
-    ) {
+    ) : Named {
+        override fun getName(): String = name
+
         val backendResources: TaskProvider<Copy> = project.tasks.register<Copy>(
             name = "copy${backend.name.capitalize()}Resources",
         ).also { backend { dependsOn(it) } }
     }
 
-    inner class AsciidoctorPdf(asciidoctor: TaskProvider<AsciidoctorTask>) : AsciidoctorBackend(asciidoctor) {
+    inner class AsciidoctorPdf(
+        name: String,
+        backend: TaskProvider<AsciidoctorTask>
+    ) : AsciidoctorBackend(name, backend) {
         private fun baseTheme(
             baseTheme: String,
             resourceProject: Project,
@@ -163,8 +212,9 @@ abstract class AsciidoctorExtension(val project: Project) {
     internal lateinit var extractCss: TaskProvider<AsciidoctorExtractCssTask>
 
     inner class AsciidoctorHtml(
-        task: TaskProvider<AsciidoctorTask>,
-    ) : AsciidoctorBackend(task) {
+        name: String,
+        backend: TaskProvider<AsciidoctorTask>,
+    ) : AsciidoctorBackend(name, backend) {
         private fun baseTheme(
             baseTheme: String,
             customThemeDir: Directory?,
