@@ -13,7 +13,7 @@ import org.gradle.api.tasks.TaskAction
 abstract class AsciidoctorExtractCssTask : DefaultTask() {
 
     @get:OutputDirectory
-    val outputDir = project.layout.buildDirectory.dir("tmp/asciidoc-css")
+    val outputDir = project.layout.buildDirectory.dir("tmp/asciidoctor/html")
 
     @TaskAction
     internal fun execute() {
