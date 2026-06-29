@@ -16,6 +16,7 @@ import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.DeveloperBoard
 import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.TextFields
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -32,7 +33,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.rememberDrawerState
@@ -52,6 +52,7 @@ import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.singleWindowApplication
 import kotlinx.coroutines.launch
 import net.kodein.theme.compose.KodeinMaterial
+import androidx.compose.material3.Typography as MaterialTypography
 
 
 enum class Page(
@@ -61,6 +62,7 @@ enum class Page(
 ) {
     Colors("Colors", Icons.Default.ColorLens, { Colors(isDark = it) }),
     Components("Components", Icons.Default.DeveloperBoard, { Components() }),
+    Typography("Typography", Icons.Default.TextFields, { Typography() }),
 }
 
 @OptIn(ExperimentalGridApi::class, ExperimentalMaterial3ExpressiveApi::class)
@@ -77,7 +79,7 @@ fun main() = singleWindowApplication(
         colorScheme =
             if (isKodein) { if (isDark) KodeinMaterial.darkColorScheme else KodeinMaterial.lightColorScheme }
             else { if (isDark) darkColorScheme() else lightColorScheme() },
-        typography = if (isKodein) KodeinMaterial.typography else Typography(),
+        typography = if (isKodein) KodeinMaterial.typography else MaterialTypography(),
         shapes = if (isKodein) KodeinMaterial.shapes else Shapes(),
     ) {
         val drawerState = rememberDrawerState(DrawerValue.Closed)

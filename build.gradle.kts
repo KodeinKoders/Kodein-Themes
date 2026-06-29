@@ -4,5 +4,5 @@ plugins {
 
 allprojects {
     group = "net.kodein.themes"
-    version = "4.5.0"
+    version = "4.6.0"
 }
